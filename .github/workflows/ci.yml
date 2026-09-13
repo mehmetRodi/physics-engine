@@ -1,0 +1,110 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-and-test:
+    name: ${{ matrix.os }} ${{ matrix.build_type }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        build_type: [Debug, Release]
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install Linux dependencies
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake libsfml-dev
+
+      - name: Install macOS dependencies
+        if: runner.os == 'macOS'
+        run: |
+          brew update
+          brew install cmake sfml@2
+
+      # Release also builds the benchmarks, so a change that breaks one is caught
+      # without anyone having to remember to run it.
+      - name: Configure
+        run: >
+          cmake -S . -B build
+          -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+          -DBUILD_DEMO=ON
+          -DPHYSICS_WARNINGS_AS_ERRORS=ON
+          -DBUILD_BENCHMARKS=${{ matrix.build_type == 'Release' && 'ON' || 'OFF' }}
+
+      - name: Build
+        run: cmake --build build --parallel
+
+      # The determinism tests compare parallel and serial runs bit for bit, so running
+      # them under optimisation as well as in Debug is the point, not a formality.
+      - name: Run tests
+        run: ctest --test-dir build --output-on-failure
+
+      - name: Headless replay
+        run: ./build/headless_replay
+
+  sanitizers:
+    name: ${{ matrix.sanitizer }} sanitizer
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - sanitizer: thread
+            flags: -fsanitize=thread
+          - sanitizer: address+undefined
+            flags: -fsanitize=address,undefined -fno-sanitize-recover=undefined -fno-omit-frame-pointer
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      # Recent runner kernels randomise the address space more aggressively than
+      # ThreadSanitizer's shadow memory layout expects.
+      - name: Relax ASLR for ThreadSanitizer
+        if: matrix.sanitizer == 'thread'
+        run: sudo sysctl vm.mmap_rnd_bits=28
+
+      - name: Configure
+        run: >
+          cmake -S . -B build
+          -DCMAKE_BUILD_TYPE=Debug
+          -DBUILD_DEMO=OFF
+          "-DCMAKE_CXX_FLAGS=${{ matrix.flags }} -g"
+
+      - name: Build
+        run: cmake --build build --parallel
+
+      - name: Run tests
+        run: ctest --test-dir build --output-on-failure
+
+  format:
+    name: clang-format
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install pinned formatter
+        run: |
+          python3 -m venv .cache/format
+          .cache/format/bin/python -m pip install -r requirements-format.txt
+          .cache/format/bin/clang-format --version
+
+      - name: Check formatting
+        run: |
+          find math physics collision core tests bench demo main.cpp \
+            \( -name '*.cpp' -o -name '*.hpp' \) -print0 \
+            | xargs -0 .cache/format/bin/clang-format --dry-run --Werror

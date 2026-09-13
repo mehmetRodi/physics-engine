@@ -1,0 +1,35 @@
+.DS_Store
+
+# Build trees
+/build
+/build-*/
+compile_commands.json
+.cache/
+
+# Compiler and linker output
+*.d
+*.o
+*.obj
+*.gch
+*.pch
+*.ilk
+*.pdb
+*.dwo
+*.so
+*.dylib
+*.dll
+*.a
+*.lib
+*.exe
+*.out
+*.app
+
+# Local notes, not part of the project
+requirements.md
+tasks.md
+AGENTS.md
+CLAUDE.md
+
+# Python tooling
+__pycache__/
+*.pyc

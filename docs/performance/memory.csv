@@ -1,0 +1,4 @@
+bodies,body_storage_bytes,with_collision_hints_bytes,candidate_hint,contact_hint
+1024,213064,1826888,8192,4096
+2048,426056,3653704,16384,8192
+8192,1704008,14614600,65536,32768

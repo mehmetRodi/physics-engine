@@ -1,0 +1,816 @@
+Analysis of sampling world_step_bench (pid 99435) every 1 millisecond
+Process:         world_step_bench [99435]
+Path:            /Users/USER/Desktop/*/world_step_bench
+Load Address:    0x10418c000
+Identifier:      world_step_bench
+Version:         0
+Code Type:       ARM64
+Platform:        macOS
+Parent Process:  Python [99424]
+Target Type:     live task
+
+Date/Time:       2026-09-13 01:51:25.286 +0300
+Launch Time:     2026-09-13 01:51:25.231 +0300
+OS Version:      macOS 27.0 (26A428)
+Report Version:  7
+Analysis Tool:   /usr/bin/sample
+
+Physical footprint:         3200K
+Physical footprint (peak):  3200K
+Idle exit:                  untracked
+----
+
+Call graph:
+    2561 Thread_1891413   DispatchQueue_1: com.apple.main-thread  (serial)
+      2561 start  (in dyld) + 6688  [0x186abfe80]
+        1558 bench::worldBenchmark(int, char**)  (in world_step_bench) + 240  [0x10418ce0c]  Benchmark.hpp:133
+        + 1530 RigidBodySystem::step(float, Vec3 const&)  (in world_step_bench) + 276  [0x104199bf8]  RigidBodySystem.cpp:173
+        + ! 1487 RigidBodySystem::resolveCollisions()  (in world_step_bench) + 176  [0x104199e28]  RigidBodySystem.cpp:216
+        + ! : 1351 ContactSolver::solve(std::vector<RigidBody>&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 72  [0x104195c74]  ContactSolver.cpp:95
+        + ! : | 491 ContactSolver::solveVelocityConstraints(std::vector<RigidBody>&)  (in world_step_bench) + 368  [0x1041963b0]  ContactSolver.cpp:248
+        + ! : | + 334 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 248  [0x104196a7c]  ContactSolver.cpp:57
+        + ! : | + ! 75 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 108  [0x104196904]  ContactSolver.cpp:40
+        + ! : | + ! : 39 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 16,36,...  [0x1041951d0,0x1041951e4,...]  Mat3.cpp:16
+        + ! : | + ! : 20 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 108  [0x10419522c]  Mat3.cpp:16
+        + ! : | + ! : | 20 Vec3::Vec3(float, float, float)  (in world_step_bench) + 4  [0x104195770]  Vec3.cpp:6
+        + ! : | + ! : 9 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 88,72  [0x104195218,0x104195208]  Mat3.cpp:18
+        + ! : | + ! : 7 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 52  [0x1041951f4]  Mat3.cpp:17
+        + ! : | + ! 63 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 76  [0x1041968e4]  ContactSolver.cpp:39
+        + ! : | + ! : 63 Vec3::operator+=(Vec3 const&)  (in world_step_bench) + 28,20  [0x10419580c,0x104195804]  Vec3.cpp:27
+        + ! : | + ! 61 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 56  [0x1041968d0]  ContactSolver.cpp:39
+        + ! : | + ! : 61 Vec3::operator*(float) const  (in world_step_bench) + 12,0  [0x104195784,0x104195778]  Vec3.cpp:9
+        + ! : | + ! 56 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 192  [0x104196958]  ContactSolver.cpp:43
+        + ! : | + ! : 21 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 108  [0x10419522c]  Mat3.cpp:16
+        + ! : | + ! : | 21 Vec3::Vec3(float, float, float)  (in world_step_bench) + 4  [0x104195770]  Vec3.cpp:6
+        + ! : | + ! : 21 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 16,36,...  [0x1041951d0,0x1041951e4,...]  Mat3.cpp:16
+        + ! : | + ! : 9 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 88,76  [0x104195218,0x10419520c]  Mat3.cpp:18
+        + ! : | + ! : 5 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 52  [0x1041951f4]  Mat3.cpp:17
+        + ! : | + ! 31 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 88  [0x1041968f0]  ContactSolver.cpp:40
+        + ! : | + ! : 31 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 40,60  [0x104195888,0x10419589c]  Vec3.cpp:43
+        + ! : | + ! 11 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 12,36  [0x1041968a4,0x1041968bc]  ContactSolver.cpp:38
+        + ! : | + ! 10 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 128  [0x104196918]  ContactSolver.cpp:40
+        + ! : | + ! : 10 Vec3::operator+=(Vec3 const&)  (in world_step_bench) + 28  [0x10419580c]  Vec3.cpp:27
+        + ! : | + ! 10 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 160  [0x104196938]  ContactSolver.cpp:42
+        + ! : | + ! : 10 Vec3::operator-=(Vec3 const&)  (in world_step_bench) + 28,20  [0x104195830,0x104195828]  Vec3.cpp:34
+        + ! : | + ! 8 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 140  [0x104196924]  ContactSolver.cpp:42
+        + ! : | + ! : 8 Vec3::operator*(float) const  (in world_step_bench) + 12  [0x104195784]  Vec3.cpp:9
+        + ! : | + ! 7 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 172  [0x104196944]  ContactSolver.cpp:43
+        + ! : | + ! : 7 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 40,48  [0x104195888,0x104195890]  Vec3.cpp:43
+        + ! : | + ! 2 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 212  [0x10419696c]  ContactSolver.cpp:43
+        + ! : | + !   2 Vec3::operator-=(Vec3 const&)  (in world_step_bench) + 28  [0x104195830]  Vec3.cpp:34
+        + ! : | + 26 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 216  [0x104196a5c]  ContactSolver.cpp:57
+        + ! : | + ! 26 Vec3::operator*(float) const  (in world_step_bench) + 12  [0x104195784]  Vec3.cpp:9
+        + ! : | + 24 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 88  [0x1041969dc]  ContactSolver.cpp:50
+        + ! : | + ! 24 Vec3::operator+(Vec3 const&) const  (in world_step_bench) + 16  [0x1041957c0]  Vec3.cpp:17
+        + ! : | + 19 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 40,20,...  [0x1041969ac,0x104196998,...]  ContactSolver.cpp:48
+        + ! : | + 16 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 108  [0x1041969f0]  ContactSolver.cpp:50
+        + ! : | + ! 16 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 36,56,...  [0x104195884,0x104195898,...]  Vec3.cpp:43
+        + ! : | + 14 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 68  [0x1041969c8]  ContactSolver.cpp:50
+        + ! : | + ! 14 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 40,12,...  [0x104195888,0x10419586c,...]  Vec3.cpp:43
+        + ! : | + 12 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 168  [0x104196a2c]  ContactSolver.cpp:50
+        + ! : | + ! 12 Vec3::dot(Vec3 const&) const  (in world_step_bench) + 28,16  [0x104195854,0x104195848]  Vec3.cpp:39
+        + ! : | + 11 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 224,228  [0x104196978,0x10419697c]  ContactSolver.cpp:44
+        + ! : | + 10 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 220  [0x104196a60]  ContactSolver.cpp:57
+        + ! : | + 9 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 128  [0x104196a04]  ContactSolver.cpp:50
+        + ! : | + ! 9 Vec3::operator+(Vec3 const&) const  (in world_step_bench) + 16  [0x1041957c0]  Vec3.cpp:17
+        + ! : | + 8 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 148  [0x104196a18]  ContactSolver.cpp:50
+        + ! : | + ! 8 Vec3::operator-(Vec3 const&) const  (in world_step_bench) + 16  [0x1041957e0]  Vec3.cpp:21
+        + ! : | + 5 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 200  [0x104196a4c]  ContactSolver.cpp:54
+        + ! : | + 3 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 132,152  [0x104196a08,0x104196a1c]  ContactSolver.cpp:50
+        + ! : | 444 ContactSolver::solveVelocityConstraints(std::vector<RigidBody>&)  (in world_step_bench) + 412  [0x1041963dc]  ContactSolver.cpp:250
+        + ! : | + 330 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 248  [0x104196a7c]  ContactSolver.cpp:57
+        + ! : | + ! 67 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 108  [0x104196904]  ContactSolver.cpp:40
+        + ! : | + ! : 40 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 16,36,...  [0x1041951d0,0x1041951e4,...]  Mat3.cpp:16
+        + ! : | + ! : 16 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 108  [0x10419522c]  Mat3.cpp:16
+        + ! : | + ! : | 16 Vec3::Vec3(float, float, float)  (in world_step_bench) + 4  [0x104195770]  Vec3.cpp:6
+        + ! : | + ! : 9 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 52  [0x1041951f4]  Mat3.cpp:17
+        + ! : | + ! : 2 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 72,88  [0x104195208,0x104195218]  Mat3.cpp:18
+        + ! : | + ! 58 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 76  [0x1041968e4]  ContactSolver.cpp:39
+        + ! : | + ! : 58 Vec3::operator+=(Vec3 const&)  (in world_step_bench) + 28,20  [0x10419580c,0x104195804]  Vec3.cpp:27
+        + ! : | + ! 56 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 192  [0x104196958]  ContactSolver.cpp:43
+        + ! : | + ! : 20 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 108  [0x10419522c]  Mat3.cpp:16
+        + ! : | + ! : | 20 Vec3::Vec3(float, float, float)  (in world_step_bench) + 4  [0x104195770]  Vec3.cpp:6
+        + ! : | + ! : 17 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 116,16,...  [0x104195234,0x1041951d0,...]  Mat3.cpp:16
+        + ! : | + ! : 11 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 76,88  [0x10419520c,0x104195218]  Mat3.cpp:18
+        + ! : | + ! : 8 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 52  [0x1041951f4]  Mat3.cpp:17
+        + ! : | + ! 40 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 56  [0x1041968d0]  ContactSolver.cpp:39
+        + ! : | + ! : 40 Vec3::operator*(float) const  (in world_step_bench) + 12,0  [0x104195784,0x104195778]  Vec3.cpp:9
+        + ! : | + ! 30 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 88  [0x1041968f0]  ContactSolver.cpp:40
+        + ! : | + ! : 30 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 40,60,...  [0x104195888,0x10419589c,...]  Vec3.cpp:43
+        + ! : | + ! 21 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 128  [0x104196918]  ContactSolver.cpp:40
+        + ! : | + ! : 21 Vec3::operator+=(Vec3 const&)  (in world_step_bench) + 28  [0x10419580c]  Vec3.cpp:27
+        + ! : | + ! 17 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 212  [0x10419696c]  ContactSolver.cpp:43
+        + ! : | + ! : 17 Vec3::operator-=(Vec3 const&)  (in world_step_bench) + 28,20  [0x104195830,0x104195828]  Vec3.cpp:34
+        + ! : | + ! 16 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 172  [0x104196944]  ContactSolver.cpp:43
+        + ! : | + ! : 16 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 40,48,...  [0x104195888,0x104195890,...]  Vec3.cpp:43
+        + ! : | + ! 14 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 160  [0x104196938]  ContactSolver.cpp:42
+        + ! : | + ! : 14 Vec3::operator-=(Vec3 const&)  (in world_step_bench) + 28,20  [0x104195830,0x104195828]  Vec3.cpp:34
+        + ! : | + ! 8 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 140  [0x104196924]  ContactSolver.cpp:42
+        + ! : | + ! : 8 Vec3::operator*(float) const  (in world_step_bench) + 12  [0x104195784]  Vec3.cpp:9
+        + ! : | + ! 3 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 12,36  [0x1041968a4,0x1041968bc]  ContactSolver.cpp:38
+        + ! : | + 27 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 68  [0x1041969c8]  ContactSolver.cpp:50
+        + ! : | + ! 27 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 40,12,...  [0x104195888,0x10419586c,...]  Vec3.cpp:43
+        + ! : | + 20 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 88  [0x1041969dc]  ContactSolver.cpp:50
+        + ! : | + ! 20 Vec3::operator+(Vec3 const&) const  (in world_step_bench) + 16,24  [0x1041957c0,0x1041957c8]  Vec3.cpp:17
+        + ! : | + 11 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 216  [0x104196a5c]  ContactSolver.cpp:57
+        + ! : | + ! 11 Vec3::operator*(float) const  (in world_step_bench) + 12,0  [0x104195784,0x104195778]  Vec3.cpp:9
+        + ! : | + 10 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 20,16  [0x104196998,0x104196994]  ContactSolver.cpp:48
+        + ! : | + 10 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 108  [0x1041969f0]  ContactSolver.cpp:50
+        + ! : | + ! 10 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 36,56  [0x104195884,0x104195898]  Vec3.cpp:43
+        + ! : | + 10 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 148  [0x104196a18]  ContactSolver.cpp:50
+        + ! : | + ! 10 Vec3::operator-(Vec3 const&) const  (in world_step_bench) + 16  [0x1041957e0]  Vec3.cpp:21
+        + ! : | + 10 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 168  [0x104196a2c]  ContactSolver.cpp:50
+        + ! : | + ! 10 Vec3::dot(Vec3 const&) const  (in world_step_bench) + 28,16  [0x104195854,0x104195848]  Vec3.cpp:39
+        + ! : | + 7 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 228,224  [0x10419697c,0x104196978]  ContactSolver.cpp:44
+        + ! : | + 5 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 128  [0x104196a04]  ContactSolver.cpp:50
+        + ! : | + ! 5 Vec3::operator+(Vec3 const&) const  (in world_step_bench) + 16  [0x1041957c0]  Vec3.cpp:17
+        + ! : | + 3 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 60  [0x1041969c0]  ContactSolver.cpp:50
+        + ! : | + 1 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 200  [0x104196a4c]  ContactSolver.cpp:54
+        + ! : | 267 ContactSolver::solveVelocityConstraints(std::vector<RigidBody>&)  (in world_step_bench) + 312  [0x104196378]  ContactSolver.cpp:243
+        + ! : | + 81 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 108  [0x104196904]  ContactSolver.cpp:40
+        + ! : | + ! 33 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 116,12,...  [0x104195234,0x1041951cc,...]  Mat3.cpp:16
+        + ! : | + ! 27 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 108  [0x10419522c]  Mat3.cpp:16
+        + ! : | + ! : 27 Vec3::Vec3(float, float, float)  (in world_step_bench) + 4  [0x104195770]  Vec3.cpp:6
+        + ! : | + ! 12 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 88,72  [0x104195218,0x104195208]  Mat3.cpp:18
+        + ! : | + ! 9 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 52,48  [0x1041951f4,0x1041951f0]  Mat3.cpp:17
+        + ! : | + 30 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 56  [0x1041968d0]  ContactSolver.cpp:39
+        + ! : | + ! 30 Vec3::operator*(float) const  (in world_step_bench) + 20,12,...  [0x10419578c,0x104195784,...]  Vec3.cpp:9
+        + ! : | + 27 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 192  [0x104196958]  ContactSolver.cpp:43
+        + ! : | + ! 11 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 116,36,...  [0x104195234,0x1041951e4,...]  Mat3.cpp:16
+        + ! : | + ! 10 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 108  [0x10419522c]  Mat3.cpp:16
+        + ! : | + ! : 10 Vec3::Vec3(float, float, float)  (in world_step_bench) + 4  [0x104195770]  Vec3.cpp:6
+        + ! : | + ! 3 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 52  [0x1041951f4]  Mat3.cpp:17
+        + ! : | + ! 3 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 72,88  [0x104195208,0x104195218]  Mat3.cpp:18
+        + ! : | + 23 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 76  [0x1041968e4]  ContactSolver.cpp:39
+        + ! : | + ! 13 Vec3::operator+=(Vec3 const&)  (in world_step_bench) + 32  [0x104195810]  Vec3.cpp:28
+        + ! : | + ! 10 Vec3::operator+=(Vec3 const&)  (in world_step_bench) + 28  [0x10419580c]  Vec3.cpp:27
+        + ! : | + 23 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 212  [0x10419696c]  ContactSolver.cpp:43
+        + ! : | + ! 23 Vec3::operator-=(Vec3 const&)  (in world_step_bench) + 28  [0x104195830]  Vec3.cpp:34
+        + ! : | + 22 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 128  [0x104196918]  ContactSolver.cpp:40
+        + ! : | + ! 15 Vec3::operator+=(Vec3 const&)  (in world_step_bench) + 32  [0x104195810]  Vec3.cpp:28
+        + ! : | + ! 7 Vec3::operator+=(Vec3 const&)  (in world_step_bench) + 28  [0x10419580c]  Vec3.cpp:27
+        + ! : | + 21 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 160  [0x104196938]  ContactSolver.cpp:42
+        + ! : | + ! 21 Vec3::operator-=(Vec3 const&)  (in world_step_bench) + 28  [0x104195830]  Vec3.cpp:34
+        + ! : | + 13 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 88  [0x1041968f0]  ContactSolver.cpp:40
+        + ! : | + ! 13 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 40  [0x104195888]  Vec3.cpp:43
+        + ! : | + 11 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 140  [0x104196924]  ContactSolver.cpp:42
+        + ! : | + ! 11 Vec3::operator*(float) const  (in world_step_bench) + 12  [0x104195784]  Vec3.cpp:9
+        + ! : | + 9 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 16  [0x1041968a8]  ContactSolver.cpp:38
+        + ! : | + 7 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 172  [0x104196944]  ContactSolver.cpp:43
+        + ! : | +   7 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 44,40  [0x10419588c,0x104195888]  Vec3.cpp:43
+        + ! : | 25 ContactSolver::solveVelocityConstraints(std::vector<RigidBody>&)  (in world_step_bench) + 148  [0x1041962d4]  ContactSolver.cpp:235
+        + ! : | + 25 Vec3::operator+(Vec3 const&) const  (in world_step_bench) + 16,20  [0x1041957c0,0x1041957c4]  Vec3.cpp:17
+        + ! : | 22 ContactSolver::solveVelocityConstraints(std::vector<RigidBody>&)  (in world_step_bench) + 128  [0x1041962c0]  ContactSolver.cpp:235
+        + ! : | + 22 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 40,12,...  [0x104195888,0x10419586c,...]  Vec3.cpp:43
+        + ! : | 21 ContactSolver::solveVelocityConstraints(std::vector<RigidBody>&)  (in world_step_bench) + 172  [0x1041962ec]  ContactSolver.cpp:235
+        + ! : | + 21 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 40,12  [0x104195888,0x10419586c]  Vec3.cpp:43
+        + ! : | 14 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 224  [0x104196978]  ContactSolver.cpp:44
+        + ! : | 14 ContactSolver::solveVelocityConstraints(std::vector<RigidBody>&)  (in world_step_bench) + 212  [0x104196314]  ContactSolver.cpp:235
+        + ! : | + 14 Vec3::operator-(Vec3 const&) const  (in world_step_bench) + 16  [0x1041957e0]  Vec3.cpp:21
+        + ! : | 14 ContactSolver::solveVelocityConstraints(std::vector<RigidBody>&)  (in world_step_bench) + 424  [0x1041963e8]  ContactSolver.cpp:252
+        + ! : | + 6 hypotf  (in libsystem_m.dylib) + 52,16  [0x197a03eb4,0x197a03e90]
+        + ! : | + 3 ContactSolver::solveVelocityConstraints(std::vector<RigidBody>&)  (in world_step_bench) + 84,72  [0x104196294,0x104196288]  ContactSolver.cpp:230
+        + ! : | + 3 DYLD-STUB$$hypotf  (in world_step_bench) + 4  [0x10419aec4]
+        + ! : | + 2 ContactSolver::solveVelocityConstraints(std::vector<RigidBody>&)  (in world_step_bench) + 424  [0x1041963e8]  ContactSolver.cpp:253
+        + ! : | 13 ContactSolver::solveVelocityConstraints(std::vector<RigidBody>&)  (in world_step_bench) + 192  [0x104196300]  ContactSolver.cpp:235
+        + ! : | + 13 Vec3::operator+(Vec3 const&) const  (in world_step_bench) + 20,16  [0x1041957c4,0x1041957c0]  Vec3.cpp:17
+        + ! : | 11 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 264  [0x104196a8c]  ContactSolver.cpp:58
+        + ! : | 8 ContactSolver::solveVelocityConstraints(std::vector<RigidBody>&)  (in world_step_bench) + 280  [0x104196358]  ContactSolver.cpp:243
+        + ! : | + 8 Vec3::operator*(float) const  (in world_step_bench) + 12  [0x104195784]  Vec3.cpp:9
+        + ! : | 7 ContactSolver::solveVelocityConstraints(std::vector<RigidBody>&)  (in world_step_bench) + 236  [0x10419632c]  ContactSolver.cpp:236
+        + ! : |   7 Vec3::dot(Vec3 const&) const  (in world_step_bench) + 16  [0x104195848]  Vec3.cpp:39
+        + ! : 103 ContactSolver::solve(std::vector<RigidBody>&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 32  [0x104195c4c]  ContactSolver.cpp:91
+        + ! : | 26 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 1064  [0x1041960d0]  ContactSolver.cpp:165
+        + ! : | + 8 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 80  [0x1041967f8]  ContactSolver.cpp:31
+        + ! : | + ! 3 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 108  [0x10419522c]  Mat3.cpp:16
+        + ! : | + ! : 3 Vec3::Vec3(float, float, float)  (in world_step_bench) + 4  [0x104195770]  Vec3.cpp:6
+        + ! : | + ! 3 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 16,36,...  [0x1041951d0,0x1041951e4,...]  Mat3.cpp:16
+        + ! : | + ! 1 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 52  [0x1041951f4]  Mat3.cpp:17
+        + ! : | + ! 1 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 88  [0x104195218]  Mat3.cpp:18
+        + ! : | + 5 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 140  [0x104196834]  ContactSolver.cpp:32
+        + ! : | + ! 5 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 108  [0x10419522c]  Mat3.cpp:16
+        + ! : | + !   5 Vec3::Vec3(float, float, float)  (in world_step_bench) + 4  [0x104195770]  Vec3.cpp:6
+        + ! : | + 3 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 100  [0x10419680c]  ContactSolver.cpp:31
+        + ! : | + ! 3 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 24,40  [0x104195878,0x104195888]  Vec3.cpp:43
+        + ! : | + 3 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 120  [0x104196820]  ContactSolver.cpp:32
+        + ! : | + ! 3 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 40  [0x104195888]  Vec3.cpp:43
+        + ! : | + 3 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 208  [0x104196878]  ContactSolver.cpp:34
+        + ! : | + ! 3 Vec3::dot(Vec3 const&) const  (in world_step_bench) + 36  [0x10419585c]  Vec3.cpp:39
+        + ! : | + 3 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 1144,1084  [0x104196120,0x1041960e4]  ContactSolver.cpp:152
+        + ! : | + 1 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 60  [0x1041967e4]  ContactSolver.cpp:31
+        + ! : | +   1 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 12  [0x10419586c]  Vec3.cpp:43
+        + ! : | 19 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 592  [0x104195ef8]  ContactSolver.cpp:135
+        + ! : | + 19 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 676,700,...  [0x104195f4c,0x104195f64,...]  ContactSolver.cpp:136
+        + ! : | 16 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 1024  [0x1041960a8]  ContactSolver.cpp:164
+        + ! : | + 4 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 140  [0x104196834]  ContactSolver.cpp:32
+        + ! : | + ! 2 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 116  [0x104195234]  Mat3.cpp:16
+        + ! : | + ! 1 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 108  [0x10419522c]  Mat3.cpp:16
+        + ! : | + ! : 1 Vec3::Vec3(float, float, float)  (in world_step_bench) + 4  [0x104195770]  Vec3.cpp:6
+        + ! : | + ! 1 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 52  [0x1041951f4]  Mat3.cpp:17
+        + ! : | + 3 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 100  [0x10419680c]  ContactSolver.cpp:31
+        + ! : | + ! 3 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 40,24  [0x104195888,0x104195878]  Vec3.cpp:43
+        + ! : | + 3 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 160  [0x104196848]  ContactSolver.cpp:32
+        + ! : | + ! 3 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 40,56  [0x104195888,0x104195898]  Vec3.cpp:43
+        + ! : | + 2 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 60  [0x1041967e4]  ContactSolver.cpp:31
+        + ! : | + ! 2 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 12,40  [0x10419586c,0x104195888]  Vec3.cpp:43
+        + ! : | + 2 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 80  [0x1041967f8]  ContactSolver.cpp:31
+        + ! : | + ! 1 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 108  [0x10419522c]  Mat3.cpp:16
+        + ! : | + ! : 1 Vec3::Vec3(float, float, float)  (in world_step_bench) + 4  [0x104195770]  Vec3.cpp:6
+        + ! : | + ! 1 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 116  [0x104195234]  Mat3.cpp:16
+        + ! : | + 2 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 192  [0x104196868]  ContactSolver.cpp:34
+        + ! : | +   2 Vec3::dot(Vec3 const&) const  (in world_step_bench) + 16  [0x104195848]  Vec3.cpp:39
+        + ! : | 9 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 984  [0x104196080]  ContactSolver.cpp:163
+        + ! : | + 2 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 140  [0x104196834]  ContactSolver.cpp:32
+        + ! : | + ! 2 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 116  [0x104195234]  Mat3.cpp:16
+        + ! : | + 2 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 160  [0x104196848]  ContactSolver.cpp:32
+        + ! : | + ! 2 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 40  [0x104195888]  Vec3.cpp:43
+        + ! : | + 2 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 192  [0x104196868]  ContactSolver.cpp:34
+        + ! : | + ! 2 Vec3::dot(Vec3 const&) const  (in world_step_bench) + 16  [0x104195848]  Vec3.cpp:39
+        + ! : | + 1 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 0  [0x1041967a8]  ContactSolver.cpp:30
+        + ! : | + 1 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 60  [0x1041967e4]  ContactSolver.cpp:31
+        + ! : | + ! 1 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 8  [0x104195868]  Vec3.cpp:43
+        + ! : | + 1 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 120  [0x104196820]  ContactSolver.cpp:32
+        + ! : | +   1 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 40  [0x104195888]  Vec3.cpp:43
+        + ! : | 7 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 412  [0x104195e44]  ContactSolver.cpp:128
+        + ! : | + 7 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 12,0,...  [0x10419586c,0x104195860,...]  Vec3.cpp:43
+        + ! : | 5 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 372  [0x104195e1c]  ContactSolver.cpp:128
+        + ! : | + 5 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 12,40  [0x10419586c,0x104195888]  Vec3.cpp:43
+        + ! : | 4 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 432  [0x104195e58]  ContactSolver.cpp:128
+        + ! : | + 4 Vec3::operator+(Vec3 const&) const  (in world_step_bench) + 4,16  [0x1041957b4,0x1041957c0]  Vec3.cpp:17
+        + ! : | 4 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 824  [0x104195fe0]  ContactSolver.cpp:145
+        + ! : | + 3 DYLD-STUB$$hypotf  (in world_step_bench) + 4  [0x10419aec4]
+        + ! : | + 1 hypotf  (in libsystem_m.dylib) + 52  [0x197a03eb4]
+        + ! : | 3 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 572  [0x104195ee4]  ContactSolver.cpp:134
+        + ! : | + 3 Vec3::normalized() const  (in world_step_bench) + 40,0  [0x10419590c,0x1041958e4]  Vec3.cpp:55
+        + ! : | 2 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 228  [0x10419688c]  ContactSolver.cpp:34
+        + ! : | 2 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 748  [0x104195f94]  ContactSolver.cpp:140
+        + ! : | + 1 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 748  [0x104195f94]  ContactSolver.cpp:140
+        + ! : | + 1 Vec3::dot(Vec3 const&) const  (in world_step_bench) + 16  [0x104195848]  Vec3.cpp:39
+        + ! : | 1 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 332  [0x104195df4]  ContactSolver.cpp:121
+        + ! : | + 1 Vec3::operator-(Vec3 const&) const  (in world_step_bench) + 16  [0x1041957e0]  Vec3.cpp:21
+        + ! : | 1 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 352  [0x104195e08]  ContactSolver.cpp:122
+        + ! : | + 1 Vec3::operator-(Vec3 const&) const  (in world_step_bench) + 16  [0x1041957e0]  Vec3.cpp:21
+        + ! : | 1 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 392  [0x104195e30]  ContactSolver.cpp:128
+        + ! : | + 1 Vec3::operator+(Vec3 const&) const  (in world_step_bench) + 4  [0x1041957b4]  Vec3.cpp:17
+        + ! : | 1 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 452  [0x104195e6c]  ContactSolver.cpp:128
+        + ! : | + 1 Vec3::operator-(Vec3 const&) const  (in world_step_bench) + 4  [0x1041957d4]  Vec3.cpp:21
+        + ! : | 1 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 472  [0x104195e80]  ContactSolver.cpp:128
+        + ! : | + 1 Vec3::dot(Vec3 const&) const  (in world_step_bench) + 12  [0x104195844]  Vec3.cpp:39
+        + ! : | 1 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 556  [0x104195ed4]  ContactSolver.cpp:134
+        + ! : |   1 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 40  [0x104195888]  Vec3.cpp:43
+        + ! : 21 ContactSolver::solve(std::vector<RigidBody>&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 44  [0x104195c58]  ContactSolver.cpp:92
+        + ! : | 14 ContactSolver::warmStart(std::vector<RigidBody>&)  (in world_step_bench) + 184  [0x10419621c]  ContactSolver.cpp:181
+        + ! : | + 3 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 88  [0x1041968f0]  ContactSolver.cpp:40
+        + ! : | + ! 3 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 40  [0x104195888]  Vec3.cpp:43
+        + ! : | + 3 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 160  [0x104196938]  ContactSolver.cpp:42
+        + ! : | + ! 3 Vec3::operator-=(Vec3 const&)  (in world_step_bench) + 28  [0x104195830]  Vec3.cpp:34
+        + ! : | + 2 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 76  [0x1041968e4]  ContactSolver.cpp:39
+        + ! : | + ! 2 Vec3::operator+=(Vec3 const&)  (in world_step_bench) + 16,28  [0x104195800,0x10419580c]  Vec3.cpp:27
+        + ! : | + 2 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 128  [0x104196918]  ContactSolver.cpp:40
+        + ! : | + ! 2 Vec3::operator+=(Vec3 const&)  (in world_step_bench) + 28  [0x10419580c]  Vec3.cpp:27
+        + ! : | + 2 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 172  [0x104196944]  ContactSolver.cpp:43
+        + ! : | + ! 2 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 36,52  [0x104195884,0x104195894]  Vec3.cpp:43
+        + ! : | + 1 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 108  [0x104196904]  ContactSolver.cpp:40
+        + ! : | + ! 1 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 108  [0x10419522c]  Mat3.cpp:16
+        + ! : | + !   1 Vec3::Vec3(float, float, float)  (in world_step_bench) + 4  [0x104195770]  Vec3.cpp:6
+        + ! : | + 1 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 212  [0x10419696c]  ContactSolver.cpp:43
+        + ! : | +   1 Vec3::operator-=(Vec3 const&)  (in world_step_bench) + 28  [0x104195830]  Vec3.cpp:34
+        + ! : | 3 ContactSolver::warmStart(std::vector<RigidBody>&)  (in world_step_bench) + 132  [0x1041961e8]  ContactSolver.cpp:179
+        + ! : | + 3 Vec3::operator*(float) const  (in world_step_bench) + 12  [0x104195784]  Vec3.cpp:9
+        + ! : | 2 ContactSolver::warmStart(std::vector<RigidBody>&)  (in world_step_bench) + 112  [0x1041961d4]  ContactSolver.cpp:177
+        + ! : | + 2 Vec3::operator+(Vec3 const&) const  (in world_step_bench) + 16  [0x1041957c0]  Vec3.cpp:17
+        + ! : | 1 ContactSolver::warmStart(std::vector<RigidBody>&)  (in world_step_bench) + 184  [0x10419621c]  ContactSolver.cpp:173
+        + ! : | 1 ContactSolver::warmStart(std::vector<RigidBody>&)  (in world_step_bench) + 72  [0x1041961ac]  ContactSolver.cpp:177
+        + ! : |   1 Vec3::operator*(float) const  (in world_step_bench) + 12  [0x104195784]  Vec3.cpp:9
+        + ! : 4 ContactSolver::solve(std::vector<RigidBody>&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 96  [0x104195c8c]  ContactSolver.cpp:98
+        + ! : | 1 ContactSolver::storeImpulses()  (in world_step_bench) + 216  [0x104196570]  ContactSolver.cpp:193
+        + ! : | 1 ContactSolver::storeImpulses()  (in world_step_bench) + 160  [0x104196538]  ContactSolver.cpp:198
+        + ! : | + 1 Vec3::operator+(Vec3 const&) const  (in world_step_bench) + 16  [0x1041957c0]  Vec3.cpp:17
+        + ! : | 1 ContactSolver::storeImpulses()  (in world_step_bench) + 104  [0x104196500]  ContactSolver.cpp:198
+        + ! : | 1 ContactSolver::storeImpulses()  (in world_step_bench) + 316  [0x1041965d4]  ContactSolver.cpp:209
+        + ! : 3 ContactSolver::correctPositions(std::vector<RigidBody>&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 196  [0x1041966e0]  ContactSolver.cpp:284
+        + ! : | 3 Vec3::operator+=(Vec3 const&)  (in world_step_bench) + 28  [0x10419580c]  Vec3.cpp:27
+        + ! : 1 ContactSolver::correctPositions(std::vector<RigidBody>&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 56  [0x104196654]  ContactSolver.cpp:266
+        + ! : 1 ContactSolver::correctPositions(std::vector<RigidBody>&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 88  [0x104196674]  ContactSolver.cpp:270
+        + ! : 1 ContactSolver::correctPositions(std::vector<RigidBody>&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 156  [0x1041966b8]  ContactSolver.cpp:282
+        + ! : | 1 Vec3::operator*(float) const  (in world_step_bench) + 24  [0x104195790]  Vec3.cpp:9
+        + ! : 1 ContactSolver::correctPositions(std::vector<RigidBody>&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 176  [0x1041966cc]  ContactSolver.cpp:284
+        + ! : | 1 Vec3::operator*(float) const  (in world_step_bench) + 12  [0x104195784]  Vec3.cpp:9
+        + ! : 1 ContactSolver::correctPositions(std::vector<RigidBody>&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 228  [0x104196700]  ContactSolver.cpp:285
+        + ! :   1 Vec3::operator-=(Vec3 const&)  (in world_step_bench) + 28  [0x104195830]  Vec3.cpp:34
+        + ! 17 RigidBodySystem::resolveCollisions()  (in world_step_bench) + 160  [0x104199e18]  RigidBodySystem.cpp:212
+        + ! : 14 RigidBodySystem::buildContacts()  (in world_step_bench) + 328  [0x10419a1a8]  RigidBodySystem.cpp:227
+        + ! : | 3 RigidBodySystem::buildContacts()::$_0::operator()(unsigned long, unsigned long) const  (in world_step_bench) + 212  [0x10419a8b0]  RigidBodySystem.cpp:230
+        + ! : | + 3 Vec3::operator*(float) const  (in world_step_bench) + 12,16,...  [0x104195784,0x104195788,...]  Vec3.cpp:9
+        + ! : | 3 RigidBodySystem::buildContacts()::$_0::operator()(unsigned long, unsigned long) const  (in world_step_bench) + 252  [0x10419a8d8]  RigidBodySystem.cpp:230
+        + ! : | + 3 Vec3::operator+(Vec3 const&) const  (in world_step_bench) + 16  [0x1041957c0]  Vec3.cpp:17
+        + ! : | 2 RigidBodySystem::buildContacts()::$_0::operator()(unsigned long, unsigned long) const  (in world_step_bench) + 172  [0x10419a888]  RigidBodySystem.cpp:230
+        + ! : | + 2 Vec3::operator*(float) const  (in world_step_bench) + 0,12  [0x104195778,0x104195784]  Vec3.cpp:9
+        + ! : | 2 RigidBodySystem::buildContacts()::$_0::operator()(unsigned long, unsigned long) const  (in world_step_bench) + 232  [0x10419a8c4]  RigidBodySystem.cpp:230
+        + ! : | + 2 Vec3::operator+(Vec3 const&) const  (in world_step_bench) + 16  [0x1041957c0]  Vec3.cpp:17
+        + ! : | 2 RigidBodySystem::buildContacts()::$_0::operator()(unsigned long, unsigned long) const  (in world_step_bench) + 272  [0x10419a8ec]  RigidBodySystem.cpp:230
+        + ! : | + 1 RigidBodySystem::buildContacts()::$_0::operator()(unsigned long, unsigned long) const  (in world_step_bench) + 368  [0x10419a94c]  RigidBodySystem.cpp:230
+        + ! : | + 1 Vec3::operator*(float) const  (in world_step_bench) + 24  [0x104195790]  Vec3.cpp:9
+        + ! : | 1 RigidBodySystem::buildContacts()::$_0::operator()(unsigned long, unsigned long) const  (in world_step_bench) + 192  [0x10419a89c]  RigidBodySystem.cpp:230
+        + ! : | + 1 Vec3::operator-(Vec3 const&) const  (in world_step_bench) + 16  [0x1041957e0]  Vec3.cpp:21
+        + ! : | 1 RigidBodySystem::buildContacts()::$_0::operator()(unsigned long, unsigned long) const  (in world_step_bench) + 520  [0x10419a9e4]  RigidBodySystem.cpp:230
+        + ! : |   1 RigidBodySystem::buildContacts()::$_0::operator()(unsigned long, unsigned long) const  (in world_step_bench) + 160  [0x10419a87c]  RigidBodySystem.cpp:230
+        + ! : 3 RigidBodySystem::buildContacts()  (in world_step_bench) + 376,372  [0x10419a1d8,0x10419a1d4]  RigidBodySystem.cpp:241
+        + ! 15 RigidBodySystem::resolveCollisions()  (in world_step_bench) + 132  [0x104199dfc]  RigidBodySystem.cpp:208
+        + ! : 12 RigidBodySystem::buildAABBProxies()::$_0::operator()(unsigned long, unsigned long) const  (in world_step_bench) + 88  [0x10419a6cc]  RigidBodySystem.cpp:196
+        + ! : | 4 RigidBody::validate() const  (in world_step_bench) + 572  [0x104198d8c]  RigidBody.cpp:56
+        + ! : | 3 RigidBody::validate() const  (in world_step_bench) + 168,132  [0x104198bf8,0x104198bd4]  RigidBody.cpp:51
+        + ! : | 2 RigidBody::validate() const  (in world_step_bench) + 4  [0x104198b54]  RigidBody.cpp:49
+        + ! : | 1 RigidBody::validate() const  (in world_step_bench) + 276  [0x104198c64]  RigidBody.cpp:52
+        + ! : | 1 RigidBody::validate() const  (in world_step_bench) + 432  [0x104198d00]  RigidBody.cpp:54
+        + ! : | 1 RigidBody::validate() const  (in world_step_bench) + 508  [0x104198d4c]  RigidBody.cpp:55
+        + ! : 2 RigidBodySystem::buildAABBProxies()::$_0::operator()(unsigned long, unsigned long) const  (in world_step_bench) + 120  [0x10419a6ec]  RigidBodySystem.cpp:197
+        + ! : | 1 makeAABBForSphere(Vec3 const&, float)  (in world_step_bench) + 72  [0x10418ec2c]  AABB.cpp:10
+        + ! : | + 1 Vec3::operator+(Vec3 const&) const  (in world_step_bench) + 16  [0x1041957c0]  Vec3.cpp:17
+        + ! : | 1 makeAABBForSphere(Vec3 const&, float)  (in world_step_bench) + 36  [0x10418ec08]  AABB.cpp:9
+        + ! : 1 RigidBodySystem::buildAABBProxies()::$_0::operator()(unsigned long, unsigned long) const  (in world_step_bench) + 136  [0x10419a6fc]  RigidBodySystem.cpp:198
+        + ! 11 RigidBodySystem::resolveCollisions()  (in world_step_bench) + 152  [0x104199e10]  RigidBodySystem.cpp:211
+        + !   8 findAABBPairsSweepAndPrune(std::vector<AABBProxy> const&, AABBSweepAndPruneScratch&, std::vector<AABBPair>&, SweepAndPruneMode)  (in world_step_bench) + 416  [0x10418f568]  AABBPair.cpp:435
+        + !   | 7 findAABBPairsSweepAndPrune(std::vector<AABBProxy> const&, AABBSweepAndPruneScratch&, std::vector<AABBPair>&, SweepAndPruneMode)  (in world_step_bench) + 756,760,...  [0x10418f6bc,0x10418f6c0,...]  AABBPair.cpp:439
+        + !   | 1 findAABBPairsSweepAndPrune(std::vector<AABBProxy> const&, AABBSweepAndPruneScratch&, std::vector<AABBPair>&, SweepAndPruneMode)  (in world_step_bench) + 500  [0x10418f5bc]  AABBPair.cpp:435
+        + !   2 findAABBPairsSweepAndPrune(std::vector<AABBProxy> const&, AABBSweepAndPruneScratch&, std::vector<AABBPair>&, SweepAndPruneMode)  (in world_step_bench) + 1940  [0x10418fb5c]  AABBPair.cpp:448
+        + !   | 1 ???  (in world_step_bench)  load address 0x10418c000 + 0x70d4  [0x1041930d4]
+        + !   | + 1 ???  (in world_step_bench)  load address 0x10418c000 + 0x7de0  [0x104193de0]
+        + !   | 1 findAABBPairsSweepAndPrune(std::vector<AABBProxy> const&, AABBSweepAndPruneScratch&, std::vector<AABBPair>&, SweepAndPruneMode)  (in world_step_bench) + 2116  [0x10418fc0c]  AABBPair.cpp:459
+        + !   1 findAABBPairsSweepAndPrune(std::vector<AABBProxy> const&, AABBSweepAndPruneScratch&, std::vector<AABBPair>&, SweepAndPruneMode)  (in world_step_bench) + 312  [0x10418f500]  AABBPair.cpp:430
+        + !     1 std::__introsort<std::_ClassicAlgPolicy, (anonymous namespace)::sortProxyIndicesByMinX(std::vector<AABBProxy> const&, std::vector<unsigned long>&)::$_0&, unsigned long*, false>(unsigned long*, unsigned long*, (anonymous namespace)::sortProxyIndicesByMinX(std::vector<AABBProxy> const&, std::vector<unsigned long>&)::$_0&, std::iterator_traits<unsigned long*>::difference_type, bool)  (in world_step_bench) + 1656  [0x1041919cc]  sort.h:810
+        + !       1 std::__insertion_sort_incomplete[abi:nqe220106]<std::_ClassicAlgPolicy, (anonymous namespace)::sortProxyIndicesByMinX(std::vector<AABBProxy> const&, std::vector<unsigned long>&)::$_0&, unsigned long*>(unsigned long*, unsigned long*, (anonymous namespace)::sortProxyIndicesByMinX(std::vector<AABBProxy> const&, std::vector<unsigned long>&)::$_0&)  (in world_step_bench) + 1012  [0x104192800]  sort.h:337
+        + 18 RigidBodySystem::step(float, Vec3 const&)  (in world_step_bench) + 332  [0x104199c30]  RigidBodySystem.cpp:172
+        + ! 4 RigidBody::update(float)  (in world_step_bench) + 84  [0x1041991a0]  RigidBody.cpp:92
+        + ! : 2 RigidBody::validate() const  (in world_step_bench) + 116,132  [0x104198bc4,0x104198bd4]  RigidBody.cpp:51
+        + ! : 1 RigidBody::validate() const  (in world_step_bench) + 24  [0x104198b68]  RigidBody.cpp:50
+        + ! : | 1 Quat::lengthSq() const  (in world_step_bench) + 24  [0x1041954b8]  Quat.cpp:33
+        + ! : 1 RigidBody::validate() const  (in world_step_bench) + 576  [0x104198d90]  RigidBody.cpp:56
+        + ! 2 RigidBody::update(float)  (in world_step_bench) + 272  [0x10419925c]  RigidBody.cpp:103
+        + ! : 1 Vec3::operator+=(Vec3 const&)  (in world_step_bench) + 0  [0x1041957f0]  Vec3.cpp:25
+        + ! : 1 Vec3::operator+=(Vec3 const&)  (in world_step_bench) + 28  [0x10419580c]  Vec3.cpp:27
+        + ! 2 RigidBody::update(float)  (in world_step_bench) + 284  [0x104199268]  RigidBody.cpp:104
+        + ! : 2 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 100,116  [0x104195224,0x104195234]  Mat3.cpp:16
+        + ! 2 RigidBody::update(float)  (in world_step_bench) + 360,372  [0x1041992b4,0x1041992c0]  RigidBody.cpp:104
+        + ! 2 RigidBody::update(float)  (in world_step_bench) + 392  [0x1041992d4]  RigidBody.cpp:106
+        + ! : 2 Quat::integrated(Vec3 const&, float) const  (in world_step_bench) + 40,96  [0x10419569c,0x1041956d4]  Quat.cpp:85
+        + ! 1 RigidBody::update(float)  (in world_step_bench) + 156  [0x1041991e8]  RigidBody.cpp:102
+        + ! 1 RigidBody::update(float)  (in world_step_bench) + 268  [0x104199258]  RigidBody.cpp:103
+        + ! 1 RigidBody::update(float)  (in world_step_bench) + 324  [0x104199290]  RigidBody.cpp:104
+        + ! : 1 Vec3::operator+(Vec3 const&) const  (in world_step_bench) + 28  [0x1041957cc]  Vec3.cpp:17
+        + ! 1 RigidBody::update(float)  (in world_step_bench) + 56  [0x104199184]  RigidBody.cpp:90
+        + ! 1 RigidBody::update(float)  (in world_step_bench) + 104  [0x1041991b4]  RigidBody.cpp:94
+        + ! : 1 Vec3::Vec3()  (in world_step_bench) + 4  [0x104195758]  Vec3.cpp:4
+        + ! 1 RigidBody::validate() const  (in world_step_bench) + 604  [0x104198dac]  RigidBody.cpp:58
+        + 5 RigidBodySystem::step(float, Vec3 const&)  (in world_step_bench) + 164  [0x104199b88]  RigidBodySystem.cpp:171
+        + ! 1 RigidBody::validate() const  (in world_step_bench) + 24  [0x104198b68]  RigidBody.cpp:50
+        + ! : 1 Quat::lengthSq() const  (in world_step_bench) + 32  [0x1041954c0]  Quat.cpp:33
+        + ! 1 RigidBody::validate() const  (in world_step_bench) + 80  [0x104198ba0]  RigidBody.cpp:51
+        + ! 1 RigidBody::validate() const  (in world_step_bench) + 260  [0x104198c54]  RigidBody.cpp:52
+        + ! 1 RigidBody::validate() const  (in world_step_bench) + 336  [0x104198ca0]  RigidBody.cpp:53
+        + ! 1 RigidBody::validate() const  (in world_step_bench) + 576  [0x104198d90]  RigidBody.cpp:56
+        + 4 RigidBody::update(float)  (in world_step_bench) + 460  [0x104199318]  RigidBody.cpp:109
+        + 1 RigidBodySystem::step(float, Vec3 const&)  (in world_step_bench) + 376  [0x104199c5c]  RigidBodySystem.cpp:172
+        +   1 Vec3::operator+=(Vec3 const&)  (in world_step_bench) + 28  [0x10419580c]  Vec3.cpp:27
+        1003 bench::worldBenchmark(int, char**)  (in world_step_bench) + 100  [0x10418cd80]  Benchmark.hpp:123
+          983 RigidBodySystem::step(float, Vec3 const&)  (in world_step_bench) + 276  [0x104199bf8]  RigidBodySystem.cpp:173
+          ! 961 RigidBodySystem::resolveCollisions()  (in world_step_bench) + 176  [0x104199e28]  RigidBodySystem.cpp:216
+          ! : 870 ContactSolver::solve(std::vector<RigidBody>&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 72  [0x104195c74]  ContactSolver.cpp:95
+          ! : | 321 ContactSolver::solveVelocityConstraints(std::vector<RigidBody>&)  (in world_step_bench) + 368  [0x1041963b0]  ContactSolver.cpp:248
+          ! : | + 223 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 248  [0x104196a7c]  ContactSolver.cpp:57
+          ! : | + ! 48 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 108  [0x104196904]  ContactSolver.cpp:40
+          ! : | + ! : 19 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 36,16,...  [0x1041951e4,0x1041951d0,...]  Mat3.cpp:16
+          ! : | + ! : 18 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 108  [0x10419522c]  Mat3.cpp:16
+          ! : | + ! : | 18 Vec3::Vec3(float, float, float)  (in world_step_bench) + 4  [0x104195770]  Vec3.cpp:6
+          ! : | + ! : 7 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 72,88  [0x104195208,0x104195218]  Mat3.cpp:18
+          ! : | + ! : 4 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 52  [0x1041951f4]  Mat3.cpp:17
+          ! : | + ! 42 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 76  [0x1041968e4]  ContactSolver.cpp:39
+          ! : | + ! : 42 Vec3::operator+=(Vec3 const&)  (in world_step_bench) + 28,20  [0x10419580c,0x104195804]  Vec3.cpp:27
+          ! : | + ! 39 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 56  [0x1041968d0]  ContactSolver.cpp:39
+          ! : | + ! : 39 Vec3::operator*(float) const  (in world_step_bench) + 12,0  [0x104195784,0x104195778]  Vec3.cpp:9
+          ! : | + ! 36 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 192  [0x104196958]  ContactSolver.cpp:43
+          ! : | + ! : 14 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 36,16,...  [0x1041951e4,0x1041951d0,...]  Mat3.cpp:16
+          ! : | + ! : 12 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 108  [0x10419522c]  Mat3.cpp:16
+          ! : | + ! : | 12 Vec3::Vec3(float, float, float)  (in world_step_bench) + 4  [0x104195770]  Vec3.cpp:6
+          ! : | + ! : 5 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 52  [0x1041951f4]  Mat3.cpp:17
+          ! : | + ! : 5 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 76,88  [0x10419520c,0x104195218]  Mat3.cpp:18
+          ! : | + ! 14 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 12,36  [0x1041968a4,0x1041968bc]  ContactSolver.cpp:38
+          ! : | + ! 12 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 88  [0x1041968f0]  ContactSolver.cpp:40
+          ! : | + ! : 12 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 40,60  [0x104195888,0x10419589c]  Vec3.cpp:43
+          ! : | + ! 8 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 160  [0x104196938]  ContactSolver.cpp:42
+          ! : | + ! : 8 Vec3::operator-=(Vec3 const&)  (in world_step_bench) + 28,20  [0x104195830,0x104195828]  Vec3.cpp:34
+          ! : | + ! 7 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 128  [0x104196918]  ContactSolver.cpp:40
+          ! : | + ! : 7 Vec3::operator+=(Vec3 const&)  (in world_step_bench) + 28,24  [0x10419580c,0x104195808]  Vec3.cpp:27
+          ! : | + ! 7 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 172  [0x104196944]  ContactSolver.cpp:43
+          ! : | + ! : 7 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 40,48,...  [0x104195888,0x104195890,...]  Vec3.cpp:43
+          ! : | + ! 5 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 212  [0x10419696c]  ContactSolver.cpp:43
+          ! : | + ! : 5 Vec3::operator-=(Vec3 const&)  (in world_step_bench) + 28,20  [0x104195830,0x104195828]  Vec3.cpp:34
+          ! : | + ! 4 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 140  [0x104196924]  ContactSolver.cpp:42
+          ! : | + ! : 4 Vec3::operator*(float) const  (in world_step_bench) + 12  [0x104195784]  Vec3.cpp:9
+          ! : | + ! 1 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 44  [0x1041968c4]  ContactSolver.cpp:39
+          ! : | + 17 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 216  [0x104196a5c]  ContactSolver.cpp:57
+          ! : | + ! 17 Vec3::operator*(float) const  (in world_step_bench) + 12  [0x104195784]  Vec3.cpp:9
+          ! : | + 15 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 68  [0x1041969c8]  ContactSolver.cpp:50
+          ! : | + ! 15 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 40,12,...  [0x104195888,0x10419586c,...]  Vec3.cpp:43
+          ! : | + 13 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 88  [0x1041969dc]  ContactSolver.cpp:50
+          ! : | + ! 13 Vec3::operator+(Vec3 const&) const  (in world_step_bench) + 16  [0x1041957c0]  Vec3.cpp:17
+          ! : | + 12 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 148  [0x104196a18]  ContactSolver.cpp:50
+          ! : | + ! 12 Vec3::operator-(Vec3 const&) const  (in world_step_bench) + 16  [0x1041957e0]  Vec3.cpp:21
+          ! : | + 10 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 168  [0x104196a2c]  ContactSolver.cpp:50
+          ! : | + ! 10 Vec3::dot(Vec3 const&) const  (in world_step_bench) + 28,16  [0x104195854,0x104195848]  Vec3.cpp:39
+          ! : | + 7 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 40,16,...  [0x1041969ac,0x104196994,...]  ContactSolver.cpp:48
+          ! : | + 6 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 108  [0x1041969f0]  ContactSolver.cpp:50
+          ! : | + ! 6 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 36,56  [0x104195884,0x104195898]  Vec3.cpp:43
+          ! : | + 6 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 220  [0x104196a60]  ContactSolver.cpp:57
+          ! : | + 5 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 128  [0x104196a04]  ContactSolver.cpp:50
+          ! : | + ! 5 Vec3::operator+(Vec3 const&) const  (in world_step_bench) + 16  [0x1041957c0]  Vec3.cpp:17
+          ! : | + 4 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 228  [0x10419697c]  ContactSolver.cpp:44
+          ! : | + 2 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 132,152  [0x104196a08,0x104196a1c]  ContactSolver.cpp:50
+          ! : | + 1 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 200  [0x104196a4c]  ContactSolver.cpp:54
+          ! : | 288 ContactSolver::solveVelocityConstraints(std::vector<RigidBody>&)  (in world_step_bench) + 412  [0x1041963dc]  ContactSolver.cpp:250
+          ! : | + 216 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 248  [0x104196a7c]  ContactSolver.cpp:57
+          ! : | + ! 47 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 108  [0x104196904]  ContactSolver.cpp:40
+          ! : | + ! : 25 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 116,16,...  [0x104195234,0x1041951d0,...]  Mat3.cpp:16
+          ! : | + ! : 11 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 108  [0x10419522c]  Mat3.cpp:16
+          ! : | + ! : | 11 Vec3::Vec3(float, float, float)  (in world_step_bench) + 4  [0x104195770]  Vec3.cpp:6
+          ! : | + ! : 8 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 52  [0x1041951f4]  Mat3.cpp:17
+          ! : | + ! : 3 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 88,72  [0x104195218,0x104195208]  Mat3.cpp:18
+          ! : | + ! 47 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 192  [0x104196958]  ContactSolver.cpp:43
+          ! : | + ! : 21 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 108  [0x10419522c]  Mat3.cpp:16
+          ! : | + ! : | 21 Vec3::Vec3(float, float, float)  (in world_step_bench) + 4  [0x104195770]  Vec3.cpp:6
+          ! : | + ! : 16 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 116,36,...  [0x104195234,0x1041951e4,...]  Mat3.cpp:16
+          ! : | + ! : 8 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 88,76  [0x104195218,0x10419520c]  Mat3.cpp:18
+          ! : | + ! : 2 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 52  [0x1041951f4]  Mat3.cpp:17
+          ! : | + ! 35 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 56  [0x1041968d0]  ContactSolver.cpp:39
+          ! : | + ! : 35 Vec3::operator*(float) const  (in world_step_bench) + 12,0  [0x104195784,0x104195778]  Vec3.cpp:9
+          ! : | + ! 31 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 76  [0x1041968e4]  ContactSolver.cpp:39
+          ! : | + ! : 31 Vec3::operator+=(Vec3 const&)  (in world_step_bench) + 28,20  [0x10419580c,0x104195804]  Vec3.cpp:27
+          ! : | + ! 21 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 88  [0x1041968f0]  ContactSolver.cpp:40
+          ! : | + ! : 21 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 40,60,...  [0x104195888,0x10419589c,...]  Vec3.cpp:43
+          ! : | + ! 12 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 172  [0x104196944]  ContactSolver.cpp:43
+          ! : | + ! : 12 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 40,48  [0x104195888,0x104195890]  Vec3.cpp:43
+          ! : | + ! 7 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 128  [0x104196918]  ContactSolver.cpp:40
+          ! : | + ! : 7 Vec3::operator+=(Vec3 const&)  (in world_step_bench) + 28  [0x10419580c]  Vec3.cpp:27
+          ! : | + ! 7 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 160  [0x104196938]  ContactSolver.cpp:42
+          ! : | + ! : 7 Vec3::operator-=(Vec3 const&)  (in world_step_bench) + 28,20  [0x104195830,0x104195828]  Vec3.cpp:34
+          ! : | + ! 4 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 212  [0x10419696c]  ContactSolver.cpp:43
+          ! : | + ! : 4 Vec3::operator-=(Vec3 const&)  (in world_step_bench) + 28  [0x104195830]  Vec3.cpp:34
+          ! : | + ! 3 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 36,12  [0x1041968bc,0x1041968a4]  ContactSolver.cpp:38
+          ! : | + ! 2 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 140  [0x104196924]  ContactSolver.cpp:42
+          ! : | + !   2 Vec3::operator*(float) const  (in world_step_bench) + 12  [0x104195784]  Vec3.cpp:9
+          ! : | + 24 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 68  [0x1041969c8]  ContactSolver.cpp:50
+          ! : | + ! 24 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 40,12,...  [0x104195888,0x10419586c,...]  Vec3.cpp:43
+          ! : | + 11 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 88  [0x1041969dc]  ContactSolver.cpp:50
+          ! : | + ! 11 Vec3::operator+(Vec3 const&) const  (in world_step_bench) + 16,24  [0x1041957c0,0x1041957c8]  Vec3.cpp:17
+          ! : | + 11 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 216  [0x104196a5c]  ContactSolver.cpp:57
+          ! : | + ! 11 Vec3::operator*(float) const  (in world_step_bench) + 12  [0x104195784]  Vec3.cpp:9
+          ! : | + 7 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 20,16,...  [0x104196998,0x104196994,...]  ContactSolver.cpp:48
+          ! : | + 6 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 108  [0x1041969f0]  ContactSolver.cpp:50
+          ! : | + ! 6 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 56,36  [0x104195898,0x104195884]  Vec3.cpp:43
+          ! : | + 6 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 148  [0x104196a18]  ContactSolver.cpp:50
+          ! : | + ! 6 Vec3::operator-(Vec3 const&) const  (in world_step_bench) + 16  [0x1041957e0]  Vec3.cpp:21
+          ! : | + 4 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 168  [0x104196a2c]  ContactSolver.cpp:50
+          ! : | + ! 4 Vec3::dot(Vec3 const&) const  (in world_step_bench) + 16,28  [0x104195848,0x104195854]  Vec3.cpp:39
+          ! : | + 3 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 128  [0x104196a04]  ContactSolver.cpp:50
+          ! : | +   3 Vec3::operator+(Vec3 const&) const  (in world_step_bench) + 16  [0x1041957c0]  Vec3.cpp:17
+          ! : | 164 ContactSolver::solveVelocityConstraints(std::vector<RigidBody>&)  (in world_step_bench) + 312  [0x104196378]  ContactSolver.cpp:243
+          ! : | + 45 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 108  [0x104196904]  ContactSolver.cpp:40
+          ! : | + ! 19 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 116,12  [0x104195234,0x1041951cc]  Mat3.cpp:16
+          ! : | + ! 15 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 108  [0x10419522c]  Mat3.cpp:16
+          ! : | + ! : 15 Vec3::Vec3(float, float, float)  (in world_step_bench) + 4  [0x104195770]  Vec3.cpp:6
+          ! : | + ! 6 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 88,72  [0x104195218,0x104195208]  Mat3.cpp:18
+          ! : | + ! 5 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 52,48  [0x1041951f4,0x1041951f0]  Mat3.cpp:17
+          ! : | + 23 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 192  [0x104196958]  ContactSolver.cpp:43
+          ! : | + ! 9 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 108  [0x10419522c]  Mat3.cpp:16
+          ! : | + ! : 9 Vec3::Vec3(float, float, float)  (in world_step_bench) + 4  [0x104195770]  Vec3.cpp:6
+          ! : | + ! 8 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 116,36,...  [0x104195234,0x1041951e4,...]  Mat3.cpp:16
+          ! : | + ! 3 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 52  [0x1041951f4]  Mat3.cpp:17
+          ! : | + ! 3 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 88,72  [0x104195218,0x104195208]  Mat3.cpp:18
+          ! : | + 22 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 56  [0x1041968d0]  ContactSolver.cpp:39
+          ! : | + ! 22 Vec3::operator*(float) const  (in world_step_bench) + 20,12  [0x10419578c,0x104195784]  Vec3.cpp:9
+          ! : | + 17 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 76  [0x1041968e4]  ContactSolver.cpp:39
+          ! : | + ! 10 Vec3::operator+=(Vec3 const&)  (in world_step_bench) + 28  [0x10419580c]  Vec3.cpp:27
+          ! : | + ! 7 Vec3::operator+=(Vec3 const&)  (in world_step_bench) + 32  [0x104195810]  Vec3.cpp:28
+          ! : | + 15 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 128  [0x104196918]  ContactSolver.cpp:40
+          ! : | + ! 11 Vec3::operator+=(Vec3 const&)  (in world_step_bench) + 32  [0x104195810]  Vec3.cpp:28
+          ! : | + ! 4 Vec3::operator+=(Vec3 const&)  (in world_step_bench) + 28  [0x10419580c]  Vec3.cpp:27
+          ! : | + 14 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 160  [0x104196938]  ContactSolver.cpp:42
+          ! : | + ! 14 Vec3::operator-=(Vec3 const&)  (in world_step_bench) + 28  [0x104195830]  Vec3.cpp:34
+          ! : | + 10 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 88  [0x1041968f0]  ContactSolver.cpp:40
+          ! : | + ! 10 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 40  [0x104195888]  Vec3.cpp:43
+          ! : | + 8 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 212  [0x10419696c]  ContactSolver.cpp:43
+          ! : | + ! 8 Vec3::operator-=(Vec3 const&)  (in world_step_bench) + 28  [0x104195830]  Vec3.cpp:34
+          ! : | + 5 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 172  [0x104196944]  ContactSolver.cpp:43
+          ! : | + ! 5 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 44,40  [0x10419588c,0x104195888]  Vec3.cpp:43
+          ! : | + 3 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 16  [0x1041968a8]  ContactSolver.cpp:38
+          ! : | + 2 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 140  [0x104196924]  ContactSolver.cpp:42
+          ! : | +   2 Vec3::operator*(float) const  (in world_step_bench) + 12  [0x104195784]  Vec3.cpp:9
+          ! : | 22 ContactSolver::solveVelocityConstraints(std::vector<RigidBody>&)  (in world_step_bench) + 148  [0x1041962d4]  ContactSolver.cpp:235
+          ! : | + 22 Vec3::operator+(Vec3 const&) const  (in world_step_bench) + 16,20  [0x1041957c0,0x1041957c4]  Vec3.cpp:17
+          ! : | 13 ContactSolver::solveVelocityConstraints(std::vector<RigidBody>&)  (in world_step_bench) + 128  [0x1041962c0]  ContactSolver.cpp:235
+          ! : | + 13 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 40,12  [0x104195888,0x10419586c]  Vec3.cpp:43
+          ! : | 13 ContactSolver::solveVelocityConstraints(std::vector<RigidBody>&)  (in world_step_bench) + 192  [0x104196300]  ContactSolver.cpp:235
+          ! : | + 13 Vec3::operator+(Vec3 const&) const  (in world_step_bench) + 16,20  [0x1041957c0,0x1041957c4]  Vec3.cpp:17
+          ! : | 12 ContactSolver::solveVelocityConstraints(std::vector<RigidBody>&)  (in world_step_bench) + 172  [0x1041962ec]  ContactSolver.cpp:235
+          ! : | + 12 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 40,12  [0x104195888,0x10419586c]  Vec3.cpp:43
+          ! : | 8 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 224  [0x104196978]  ContactSolver.cpp:44
+          ! : | 7 (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench) + 264  [0x104196a8c]  ContactSolver.cpp:58
+          ! : | 7 ContactSolver::solveVelocityConstraints(std::vector<RigidBody>&)  (in world_step_bench) + 236  [0x10419632c]  ContactSolver.cpp:236
+          ! : | + 7 Vec3::dot(Vec3 const&) const  (in world_step_bench) + 16  [0x104195848]  Vec3.cpp:39
+          ! : | 5 ContactSolver::solveVelocityConstraints(std::vector<RigidBody>&)  (in world_step_bench) + 212  [0x104196314]  ContactSolver.cpp:235
+          ! : | + 5 Vec3::operator-(Vec3 const&) const  (in world_step_bench) + 16  [0x1041957e0]  Vec3.cpp:21
+          ! : | 5 ContactSolver::solveVelocityConstraints(std::vector<RigidBody>&)  (in world_step_bench) + 280  [0x104196358]  ContactSolver.cpp:243
+          ! : | + 5 Vec3::operator*(float) const  (in world_step_bench) + 12  [0x104195784]  Vec3.cpp:9
+          ! : | 5 ContactSolver::solveVelocityConstraints(std::vector<RigidBody>&)  (in world_step_bench) + 424  [0x1041963e8]  ContactSolver.cpp:252
+          ! : |   2 ContactSolver::solveVelocityConstraints(std::vector<RigidBody>&)  (in world_step_bench) + 424  [0x1041963e8]  ContactSolver.cpp:253
+          ! : |   1 ContactSolver::solveVelocityConstraints(std::vector<RigidBody>&)  (in world_step_bench) + 84  [0x104196294]  ContactSolver.cpp:230
+          ! : |   1 DYLD-STUB$$hypotf  (in world_step_bench) + 4  [0x10419aec4]
+          ! : |   1 hypotf  (in libsystem_m.dylib) + 52  [0x197a03eb4]
+          ! : 70 ContactSolver::solve(std::vector<RigidBody>&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 32  [0x104195c4c]  ContactSolver.cpp:91
+          ! : | 18 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 592  [0x104195ef8]  ContactSolver.cpp:135
+          ! : | + 16 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 676,704,...  [0x104195f4c,0x104195f68,...]  ContactSolver.cpp:136
+          ! : | + 2 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 0,12  [0x104195860,0x10419586c]  Vec3.cpp:43
+          ! : | 12 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 1064  [0x1041960d0]  ContactSolver.cpp:165
+          ! : | + 3 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 140  [0x104196834]  ContactSolver.cpp:32
+          ! : | + ! 3 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 108  [0x10419522c]  Mat3.cpp:16
+          ! : | + !   3 Vec3::Vec3(float, float, float)  (in world_step_bench) + 4  [0x104195770]  Vec3.cpp:6
+          ! : | + 3 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 268,1084,...  [0x104195db4,0x1041960e4,...]  ContactSolver.cpp:152
+          ! : | + 1 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 60  [0x1041967e4]  ContactSolver.cpp:31
+          ! : | + ! 1 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 12  [0x10419586c]  Vec3.cpp:43
+          ! : | + 1 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 100  [0x10419680c]  ContactSolver.cpp:31
+          ! : | + ! 1 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 52  [0x104195894]  Vec3.cpp:43
+          ! : | + 1 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 120  [0x104196820]  ContactSolver.cpp:32
+          ! : | + ! 1 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 40  [0x104195888]  Vec3.cpp:43
+          ! : | + 1 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 192  [0x104196868]  ContactSolver.cpp:34
+          ! : | + ! 1 Vec3::dot(Vec3 const&) const  (in world_step_bench) + 16  [0x104195848]  Vec3.cpp:39
+          ! : | + 1 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 208  [0x104196878]  ContactSolver.cpp:34
+          ! : | + ! 1 Vec3::dot(Vec3 const&) const  (in world_step_bench) + 24  [0x104195850]  Vec3.cpp:39
+          ! : | + 1 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 304  [0x104195dd8]  ContactSolver.cpp:116
+          ! : | 9 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 1024  [0x1041960a8]  ContactSolver.cpp:164
+          ! : | + 2 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 120  [0x104196820]  ContactSolver.cpp:32
+          ! : | + ! 2 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 12,40  [0x10419586c,0x104195888]  Vec3.cpp:43
+          ! : | + 2 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 140  [0x104196834]  ContactSolver.cpp:32
+          ! : | + ! 1 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 108  [0x10419522c]  Mat3.cpp:16
+          ! : | + ! : 1 Vec3::Vec3(float, float, float)  (in world_step_bench) + 4  [0x104195770]  Vec3.cpp:6
+          ! : | + ! 1 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 72  [0x104195208]  Mat3.cpp:18
+          ! : | + 1 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 60  [0x1041967e4]  ContactSolver.cpp:31
+          ! : | + ! 1 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 12  [0x10419586c]  Vec3.cpp:43
+          ! : | + 1 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 80  [0x1041967f8]  ContactSolver.cpp:31
+          ! : | + ! 1 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 108  [0x10419522c]  Mat3.cpp:16
+          ! : | + !   1 Vec3::Vec3(float, float, float)  (in world_step_bench) + 4  [0x104195770]  Vec3.cpp:6
+          ! : | + 1 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 100  [0x10419680c]  ContactSolver.cpp:31
+          ! : | + ! 1 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 40  [0x104195888]  Vec3.cpp:43
+          ! : | + 1 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 192  [0x104196868]  ContactSolver.cpp:34
+          ! : | + ! 1 Vec3::dot(Vec3 const&) const  (in world_step_bench) + 16  [0x104195848]  Vec3.cpp:39
+          ! : | + 1 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 208  [0x104196878]  ContactSolver.cpp:34
+          ! : | +   1 Vec3::dot(Vec3 const&) const  (in world_step_bench) + 36  [0x10419585c]  Vec3.cpp:39
+          ! : | 4 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 372  [0x104195e1c]  ContactSolver.cpp:128
+          ! : | + 3 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 0  [0x104195860]  Vec3.cpp:43
+          ! : | + 1 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 376  [0x104195e20]  ContactSolver.cpp:128
+          ! : | 4 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 412  [0x104195e44]  ContactSolver.cpp:128
+          ! : | + 4 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 0,48  [0x104195860,0x104195890]  Vec3.cpp:43
+          ! : | 4 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 748  [0x104195f94]  ContactSolver.cpp:140
+          ! : | + 3 Vec3::dot(Vec3 const&) const  (in world_step_bench) + 16  [0x104195848]  Vec3.cpp:39
+          ! : | + 1 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 748  [0x104195f94]  ContactSolver.cpp:140
+          ! : | 4 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 824  [0x104195fe0]  ContactSolver.cpp:145
+          ! : | + 2 DYLD-STUB$$hypotf  (in world_step_bench) + 4  [0x10419aec4]
+          ! : | + 1 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 952  [0x104196060]  ContactSolver.cpp:152
+          ! : | + 1 hypotf  (in libsystem_m.dylib) + 52  [0x197a03eb4]
+          ! : | 3 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 452  [0x104195e6c]  ContactSolver.cpp:128
+          ! : | + 2 Vec3::operator-(Vec3 const&) const  (in world_step_bench) + 4,16  [0x1041957d4,0x1041957e0]  Vec3.cpp:21
+          ! : | + 1 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 464  [0x104195e78]  ContactSolver.cpp:128
+          ! : | 3 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 572  [0x104195ee4]  ContactSolver.cpp:134
+          ! : | + 2 Vec3::normalized() const  (in world_step_bench) + 0,40  [0x1041958e4,0x10419590c]  Vec3.cpp:55
+          ! : | + 1 Vec3::normalized() const  (in world_step_bench) + 60  [0x104195920]  Vec3.cpp:59
+          ! : | 2 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 556  [0x104195ed4]  ContactSolver.cpp:134
+          ! : | + 2 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 0  [0x104195860]  Vec3.cpp:43
+          ! : | 2 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 984  [0x104196080]  ContactSolver.cpp:163
+          ! : | + 1 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 140  [0x104196834]  ContactSolver.cpp:32
+          ! : | + ! 1 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 116  [0x104195234]  Mat3.cpp:16
+          ! : | + 1 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 208  [0x104196878]  ContactSolver.cpp:34
+          ! : | +   1 Vec3::dot(Vec3 const&) const  (in world_step_bench) + 20  [0x10419584c]  Vec3.cpp:39
+          ! : | 1 (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 228  [0x10419688c]  ContactSolver.cpp:34
+          ! : | 1 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 392  [0x104195e30]  ContactSolver.cpp:128
+          ! : | + 1 Vec3::operator+(Vec3 const&) const  (in world_step_bench) + 16  [0x1041957c0]  Vec3.cpp:17
+          ! : | 1 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 432  [0x104195e58]  ContactSolver.cpp:128
+          ! : | + 1 Vec3::operator+(Vec3 const&) const  (in world_step_bench) + 16  [0x1041957c0]  Vec3.cpp:17
+          ! : | 1 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 472  [0x104195e80]  ContactSolver.cpp:128
+          ! : | + 1 Vec3::dot(Vec3 const&) const  (in world_step_bench) + 0  [0x104195838]  Vec3.cpp:39
+          ! : | 1 ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 796  [0x104195fc4]  ContactSolver.cpp:144
+          ! : |   1 Vec3::dot(Vec3 const&) const  (in world_step_bench) + 16  [0x104195848]  Vec3.cpp:39
+          ! : 12 ContactSolver::solve(std::vector<RigidBody>&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 44  [0x104195c58]  ContactSolver.cpp:92
+          ! : | 6 ContactSolver::warmStart(std::vector<RigidBody>&)  (in world_step_bench) + 184  [0x10419621c]  ContactSolver.cpp:181
+          ! : | + 2 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 192  [0x104196958]  ContactSolver.cpp:43
+          ! : | + ! 2 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 16,36  [0x1041951d0,0x1041951e4]  Mat3.cpp:16
+          ! : | + 1 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 88  [0x1041968f0]  ContactSolver.cpp:40
+          ! : | + ! 1 Vec3::cross(Vec3 const&) const  (in world_step_bench) + 40  [0x104195888]  Vec3.cpp:43
+          ! : | + 1 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 108  [0x104196904]  ContactSolver.cpp:40
+          ! : | + ! 1 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 52  [0x1041951f4]  Mat3.cpp:17
+          ! : | + 1 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 160  [0x104196938]  ContactSolver.cpp:42
+          ! : | + ! 1 Vec3::operator-=(Vec3 const&)  (in world_step_bench) + 28  [0x104195830]  Vec3.cpp:34
+          ! : | + 1 (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 212  [0x10419696c]  ContactSolver.cpp:43
+          ! : | +   1 Vec3::operator-=(Vec3 const&)  (in world_step_bench) + 28  [0x104195830]  Vec3.cpp:34
+          ! : | 3 ContactSolver::warmStart(std::vector<RigidBody>&)  (in world_step_bench) + 112  [0x1041961d4]  ContactSolver.cpp:177
+          ! : | + 3 Vec3::operator+(Vec3 const&) const  (in world_step_bench) + 16  [0x1041957c0]  Vec3.cpp:17
+          ! : | 1 ContactSolver::warmStart(std::vector<RigidBody>&)  (in world_step_bench) + 184  [0x10419621c]  ContactSolver.cpp:173
+          ! : | 1 ContactSolver::warmStart(std::vector<RigidBody>&)  (in world_step_bench) + 92  [0x1041961c0]  ContactSolver.cpp:178
+          ! : | + 1 Vec3::operator*(float) const  (in world_step_bench) + 12  [0x104195784]  Vec3.cpp:9
+          ! : | 1 ContactSolver::warmStart(std::vector<RigidBody>&)  (in world_step_bench) + 152  [0x1041961fc]  ContactSolver.cpp:178
+          ! : |   1 Vec3::operator+(Vec3 const&) const  (in world_step_bench) + 16  [0x1041957c0]  Vec3.cpp:17
+          ! : 5 ContactSolver::solve(std::vector<RigidBody>&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 96  [0x104195c8c]  ContactSolver.cpp:98
+          ! : | 3 ContactSolver::storeImpulses()  (in world_step_bench) + 160  [0x104196538]  ContactSolver.cpp:198
+          ! : | + 3 Vec3::operator+(Vec3 const&) const  (in world_step_bench) + 16  [0x1041957c0]  Vec3.cpp:17
+          ! : | 1 ContactSolver::storeImpulses()  (in world_step_bench) + 180  [0x10419654c]  ContactSolver.cpp:193
+          ! : | 1 ContactSolver::storeImpulses()  (in world_step_bench) + 116  [0x10419650c]  ContactSolver.cpp:198
+          ! : |   1 Vec3::operator*(float) const  (in world_step_bench) + 12  [0x104195784]  Vec3.cpp:9
+          ! : 2 ContactSolver::correctPositions(std::vector<RigidBody>&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 196  [0x1041966e0]  ContactSolver.cpp:284
+          ! : | 2 Vec3::operator+=(Vec3 const&)  (in world_step_bench) + 28  [0x10419580c]  Vec3.cpp:27
+          ! : 2 ContactSolver::correctPositions(std::vector<RigidBody>&, std::vector<RigidBodyContact> const&)  (in world_step_bench) + 228  [0x104196700]  ContactSolver.cpp:285
+          ! :   2 Vec3::operator-=(Vec3 const&)  (in world_step_bench) + 28  [0x104195830]  Vec3.cpp:34
+          ! 10 RigidBodySystem::resolveCollisions()  (in world_step_bench) + 160  [0x104199e18]  RigidBodySystem.cpp:212
+          ! : 9 RigidBodySystem::buildContacts()  (in world_step_bench) + 328  [0x10419a1a8]  RigidBodySystem.cpp:227
+          ! : | 3 RigidBodySystem::buildContacts()::$_0::operator()(unsigned long, unsigned long) const  (in world_step_bench) + 272  [0x10419a8ec]  RigidBodySystem.cpp:230
+          ! : | + 3 RigidBodySystem::buildContacts()::$_0::operator()(unsigned long, unsigned long) const  (in world_step_bench) + 368,420  [0x10419a94c,0x10419a980]  RigidBodySystem.cpp:230
+          ! : | 2 RigidBodySystem::buildContacts()::$_0::operator()(unsigned long, unsigned long) const  (in world_step_bench) + 476  [0x10419a9b8]  RigidBodySystem.cpp:230
+          ! : | + 1 RigidBodySystem::buildContacts()::$_0::operator()(unsigned long, unsigned long) const  (in world_step_bench) + 480  [0x10419a9bc]  RigidBodySystem.cpp:230
+          ! : | + 1 Vec3::length() const  (in world_step_bench) + 8  [0x1041958c8]  Vec3.cpp:51
+          ! : | 1 RigidBodySystem::buildContacts()::$_0::operator()(unsigned long, unsigned long) const  (in world_step_bench) + 172  [0x10419a888]  RigidBodySystem.cpp:230
+          ! : | + 1 Vec3::operator*(float) const  (in world_step_bench) + 0  [0x104195778]  Vec3.cpp:9
+          ! : | 1 RigidBodySystem::buildContacts()::$_0::operator()(unsigned long, unsigned long) const  (in world_step_bench) + 192  [0x10419a89c]  RigidBodySystem.cpp:230
+          ! : | + 1 Vec3::operator-(Vec3 const&) const  (in world_step_bench) + 16  [0x1041957e0]  Vec3.cpp:21
+          ! : | 1 RigidBodySystem::buildContacts()::$_0::operator()(unsigned long, unsigned long) const  (in world_step_bench) + 252  [0x10419a8d8]  RigidBodySystem.cpp:230
+          ! : | + 1 Vec3::operator+(Vec3 const&) const  (in world_step_bench) + 16  [0x1041957c0]  Vec3.cpp:17
+          ! : | 1 RigidBodySystem::buildContacts()::$_0::operator()(unsigned long, unsigned long) const  (in world_step_bench) + 448  [0x10419a99c]  RigidBodySystem.cpp:230
+          ! : |   1 Vec3::operator-(Vec3 const&) const  (in world_step_bench) + 16  [0x1041957e0]  Vec3.cpp:21
+          ! : 1 RigidBodySystem::buildContacts()  (in world_step_bench) + 376  [0x10419a1d8]  RigidBodySystem.cpp:241
+          ! 7 RigidBodySystem::resolveCollisions()  (in world_step_bench) + 152  [0x104199e10]  RigidBodySystem.cpp:211
+          ! : 6 findAABBPairsSweepAndPrune(std::vector<AABBProxy> const&, AABBSweepAndPruneScratch&, std::vector<AABBPair>&, SweepAndPruneMode)  (in world_step_bench) + 416  [0x10418f568]  AABBPair.cpp:435
+          ! : | 3 findAABBPairsSweepAndPrune(std::vector<AABBProxy> const&, AABBSweepAndPruneScratch&, std::vector<AABBPair>&, SweepAndPruneMode)  (in world_step_bench) + 500,516  [0x10418f5bc,0x10418f5cc]  AABBPair.cpp:435
+          ! : | 2 findAABBPairsSweepAndPrune(std::vector<AABBProxy> const&, AABBSweepAndPruneScratch&, std::vector<AABBPair>&, SweepAndPruneMode)  (in world_step_bench) + 820,896  [0x10418f6fc,0x10418f748]  AABBPair.cpp:439
+          ! : | 1 findAABBPairsSweepAndPrune(std::vector<AABBProxy> const&, AABBSweepAndPruneScratch&, std::vector<AABBPair>&, SweepAndPruneMode)  (in world_step_bench) + 1236  [0x10418f89c]  AABBPair.cpp:0
+          ! : 1 findAABBPairsSweepAndPrune(std::vector<AABBProxy> const&, AABBSweepAndPruneScratch&, std::vector<AABBPair>&, SweepAndPruneMode)  (in world_step_bench) + 312  [0x10418f500]  AABBPair.cpp:430
+          ! :   1 std::__introsort<std::_ClassicAlgPolicy, (anonymous namespace)::sortProxyIndicesByMinX(std::vector<AABBProxy> const&, std::vector<unsigned long>&)::$_0&, unsigned long*, false>(unsigned long*, unsigned long*, (anonymous namespace)::sortProxyIndicesByMinX(std::vector<AABBProxy> const&, std::vector<unsigned long>&)::$_0&, std::iterator_traits<unsigned long*>::difference_type, bool)  (in world_step_bench) + 1656  [0x1041919cc]  sort.h:810
+          ! :     1 std::__insertion_sort_incomplete[abi:nqe220106]<std::_ClassicAlgPolicy, (anonymous namespace)::sortProxyIndicesByMinX(std::vector<AABBProxy> const&, std::vector<unsigned long>&)::$_0&, unsigned long*>(unsigned long*, unsigned long*, (anonymous namespace)::sortProxyIndicesByMinX(std::vector<AABBProxy> const&, std::vector<unsigned long>&)::$_0&)  (in world_step_bench) + 1012  [0x104192800]  sort.h:337
+          ! 5 RigidBodySystem::resolveCollisions()  (in world_step_bench) + 132  [0x104199dfc]  RigidBodySystem.cpp:208
+          !   4 RigidBodySystem::buildAABBProxies()::$_0::operator()(unsigned long, unsigned long) const  (in world_step_bench) + 88  [0x10419a6cc]  RigidBodySystem.cpp:196
+          !   | 3 RigidBody::validate() const  (in world_step_bench) + 572  [0x104198d8c]  RigidBody.cpp:56
+          !   | 1 RigidBody::validate() const  (in world_step_bench) + 432  [0x104198d00]  RigidBody.cpp:54
+          !   1 RigidBodySystem::buildAABBProxies()::$_0::operator()(unsigned long, unsigned long) const  (in world_step_bench) + 120  [0x10419a6ec]  RigidBodySystem.cpp:197
+          !     1 makeAABBForSphere(Vec3 const&, float)  (in world_step_bench) + 72  [0x10418ec2c]  AABB.cpp:10
+          !       1 Vec3::operator+(Vec3 const&) const  (in world_step_bench) + 16  [0x1041957c0]  Vec3.cpp:17
+          16 RigidBodySystem::step(float, Vec3 const&)  (in world_step_bench) + 332  [0x104199c30]  RigidBodySystem.cpp:172
+          ! 8 RigidBody::update(float)  (in world_step_bench) + 84  [0x1041991a0]  RigidBody.cpp:92
+          ! : 3 RigidBody::validate() const  (in world_step_bench) + 132,168,...  [0x104198bd4,0x104198bf8,...]  RigidBody.cpp:51
+          ! : 1 RigidBody::validate() const  (in world_step_bench) + 320  [0x104198c90]  RigidBody.cpp:0
+          ! : 1 RigidBody::validate() const  (in world_step_bench) + 4  [0x104198b54]  RigidBody.cpp:49
+          ! : 1 RigidBody::validate() const  (in world_step_bench) + 276  [0x104198c64]  RigidBody.cpp:52
+          ! : 1 RigidBody::validate() const  (in world_step_bench) + 432  [0x104198d00]  RigidBody.cpp:54
+          ! : 1 RigidBody::validate() const  (in world_step_bench) + 572  [0x104198d8c]  RigidBody.cpp:56
+          ! 4 RigidBody::update(float)  (in world_step_bench) + 180  [0x104199200]  RigidBody.cpp:102
+          ! : 4 Vec3::operator+(Vec3 const&) const  (in world_step_bench) + 24,16  [0x1041957c8,0x1041957c0]  Vec3.cpp:17
+          ! 2 RigidBody::update(float)  (in world_step_bench) + 284  [0x104199268]  RigidBody.cpp:104
+          ! : 1 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 116  [0x104195234]  Mat3.cpp:16
+          ! : 1 Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 88  [0x104195218]  Mat3.cpp:18
+          ! 1 RigidBody::update(float)  (in world_step_bench) + 164  [0x1041991f0]  RigidBody.cpp:102
+          ! 1 RigidBody::update(float)  (in world_step_bench) + 392  [0x1041992d4]  RigidBody.cpp:106
+          !   1 Quat::integrated(Vec3 const&, float) const  (in world_step_bench) + 144  [0x104195704]  Quat.cpp:85
+          3 RigidBodySystem::step(float, Vec3 const&)  (in world_step_bench) + 164  [0x104199b88]  RigidBodySystem.cpp:171
+          ! 1 RigidBody::validate() const  (in world_step_bench) + 260  [0x104198c54]  RigidBody.cpp:52
+          ! 1 RigidBody::validate() const  (in world_step_bench) + 336  [0x104198ca0]  RigidBody.cpp:53
+          ! 1 RigidBody::validate() const  (in world_step_bench) + 576  [0x104198d90]  RigidBody.cpp:56
+          1 RigidBodySystem::step(float, Vec3 const&)  (in world_step_bench) + 164  [0x104199b88]  RigidBodySystem.cpp:170
+
+Total number in stack (recursive counted multiple, when >=5):
+        49       Vec3::cross(Vec3 const&) const  (in world_step_bench) + 0  [0x104195860]  Vec3.cpp:43
+        28       Vec3::operator*(float) const  (in world_step_bench) + 0  [0x104195778]  Vec3.cpp:9
+        28       Vec3::operator+(Vec3 const&) const  (in world_step_bench) + 0  [0x1041957b0]  Vec3.cpp:17
+        20       Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 0  [0x1041951c0]  Mat3.cpp:16
+        20       Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 108  [0x10419522c]  Mat3.cpp:16
+        20       Vec3::Vec3(float, float, float)  (in world_step_bench) + 0  [0x10419576c]  Vec3.cpp:6
+        19       Vec3::dot(Vec3 const&) const  (in world_step_bench) + 0  [0x104195838]  Vec3.cpp:39
+        18       Vec3::operator+=(Vec3 const&)  (in world_step_bench) + 0  [0x1041957f0]  Vec3.cpp:27
+        18       Vec3::operator-=(Vec3 const&)  (in world_step_bench) + 0  [0x104195814]  Vec3.cpp:34
+        15       Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 0  [0x1041951c0]  Mat3.cpp:17
+        15       Mat3::operator*(Vec3 const&) const  (in world_step_bench) + 0  [0x1041951c0]  Mat3.cpp:18
+        13       Vec3::operator-(Vec3 const&) const  (in world_step_bench) + 0  [0x1041957d0]  Vec3.cpp:21
+        8       (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 108  [0x104196904]  ContactSolver.cpp:40
+        8       (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 160  [0x104196938]  ContactSolver.cpp:42
+        8       (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 212  [0x10419696c]  ContactSolver.cpp:43
+        8       (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 88  [0x1041968f0]  ContactSolver.cpp:40
+        7       (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 128  [0x104196918]  ContactSolver.cpp:40
+        7       (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 172  [0x104196944]  ContactSolver.cpp:43
+        7       (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 192  [0x104196958]  ContactSolver.cpp:43
+        7       (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 76  [0x1041968e4]  ContactSolver.cpp:39
+        6       (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 0  [0x104196898]  ContactSolver.cpp:38
+        6       (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 140  [0x104196924]  ContactSolver.cpp:42
+        6       (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 56  [0x1041968d0]  ContactSolver.cpp:39
+        6       (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 140  [0x104196834]  ContactSolver.cpp:32
+        6       RigidBody::validate() const  (in world_step_bench) + 0  [0x104198b50]  RigidBody.cpp:56
+        5       (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 0  [0x104196898]  ContactSolver.cpp:44
+        5       (anonymous namespace)::inverseEffectiveMass(RigidBody const&, Vec3 const&, RigidBody const&, Vec3 const&, Vec3 const&)  (in world_step_bench) + 60  [0x1041967e4]  ContactSolver.cpp:31
+
+Sort by top of stack, same collapsed (when >= 5):
+        Mat3::operator*(Vec3 const&) const  (in world_step_bench)        428
+        Vec3::cross(Vec3 const&) const  (in world_step_bench)        413
+        Vec3::operator*(float) const  (in world_step_bench)        355
+        Vec3::operator+=(Vec3 const&)  (in world_step_bench)        328
+        Vec3::Vec3(float, float, float)  (in world_step_bench)        216
+        Vec3::operator+(Vec3 const&) const  (in world_step_bench)        193
+        Vec3::operator-=(Vec3 const&)  (in world_step_bench)        142
+        (anonymous namespace)::applyFrictionAxis(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&, float, float, float&)  (in world_step_bench)        92
+        (anonymous namespace)::applyImpulse(RigidBody&, Vec3 const&, RigidBody&, Vec3 const&, Vec3 const&)  (in world_step_bench)        88
+        Vec3::dot(Vec3 const&) const  (in world_step_bench)        69
+        Vec3::operator-(Vec3 const&) const  (in world_step_bench)        63
+        ContactSolver::prepare(std::vector<RigidBody> const&, std::vector<RigidBodyContact> const&)  (in world_step_bench)        47
+        RigidBody::validate() const  (in world_step_bench)        35
+        findAABBPairsSweepAndPrune(std::vector<AABBProxy> const&, AABBSweepAndPruneScratch&, std::vector<AABBPair>&, SweepAndPruneMode)  (in world_step_bench)        15
+        RigidBody::update(float)  (in world_step_bench)        10
+        DYLD-STUB$$hypotf  (in world_step_bench)        9
+        hypotf  (in libsystem_m.dylib)        9
+        ContactSolver::solveVelocityConstraints(std::vector<RigidBody>&)  (in world_step_bench)        8
+        RigidBodySystem::buildContacts()::$_0::operator()(unsigned long, unsigned long) const  (in world_step_bench)        6
+        Vec3::normalized() const  (in world_step_bench)        6
+
+Binary Images:
+       0x10418c000 -        0x10419bcdb +world_step_bench (0) <E4B74912-F1CC-3896-9B66-03EC998B01D6> /Users/*/Desktop/*/world_step_bench
+       0x186a0c000 -        0x186a5b5f7  libobjc.A.dylib (973.1) <C0680DF6-9900-3C29-A071-95A031686EF8> /usr/lib/libobjc.A.dylib
+       0x186a5c000 -        0x186a6623f  libsharedcache.dylib (0) <117C1ED6-AE11-3D9E-B05B-844F35395552> /usr/lib/libsharedcache.dylib
+       0x186a67000 -        0x186a8dd3b  libdyld.dylib (27062) <62863BCA-DD60-3D32-A9DB-89099BA6F3D7> /usr/lib/system/libdyld.dylib
+       0x186a8e000 -        0x186b4d6e3  dyld (1.0.0 - 27062) <D341DDCB-7969-3A9C-8E03-0CF4751398A9> /usr/lib/dyld
+       0x186b4e000 -        0x186b5101f  libsystem_blocks.dylib (98.1) <6F304731-D95D-3501-B4AD-F2934F7F2446> /usr/lib/system/libsystem_blocks.dylib
+       0x186b52000 -        0x186ba70df  libxpc.dylib (3298.1.1) <0791121F-B5FC-3F84-BF04-115E86D2D882> /usr/lib/system/libxpc.dylib
+       0x186ba8000 -        0x186bc7c13  libsystem_trace.dylib (1966.1.1) <B48A8E3E-A12A-3342-8321-428B555E965E> /usr/lib/system/libsystem_trace.dylib
+       0x186bc8000 -        0x186c7cf27  libcorecrypto.dylib (2109.0.22) <807AA6C9-5D8A-3CA5-B4CE-FACE5296EF6A> /usr/lib/system/libcorecrypto.dylib
+       0x186c7d000 -        0x186cd2c5f  libsystem_malloc.dylib (886.0.8) <2339CB57-FE5A-3154-A206-A76059C749EB> /usr/lib/system/libsystem_malloc.dylib
+       0x186cd3000 -        0x186d1919f  libdispatch.dylib (1605.0.2) <022BF08F-0B3A-3225-9E65-16D1553CE90D> /usr/lib/system/libdispatch.dylib
+       0x186d1a000 -        0x186d1cd2b  libsystem_featureflags.dylib (108) <20C1CAB2-1F13-3426-8146-9CAE9FF2A33D> /usr/lib/system/libsystem_featureflags.dylib
+       0x186d1d000 -        0x186d9fca3  libsystem_c.dylib (1786.0.3) <FBA7B23E-AA60-3A90-9AA4-A7A2E0AD63EE> /usr/lib/system/libsystem_c.dylib
+       0x186da0000 -        0x186e35033  libc++.1.dylib (2200.27) <1E9BA4AA-B5DA-3CF3-80AC-4B880049573F> /usr/lib/libc++.1.dylib
+       0x186e36000 -        0x186e4feff  libc++abi.dylib (2200.27) <A21743EE-6E1C-3E74-97EA-7AF793DE4BDF> /usr/lib/libc++abi.dylib
+       0x186e50000 -        0x186e8e9ab  libsystem_kernel.dylib (13432.1.9) <F63BF418-8F75-34A4-AAF1-8CAF2B9B6A05> /usr/lib/system/libsystem_kernel.dylib
+       0x186e8f000 -        0x186e9b91b  libsystem_pthread.dylib (553.0.1) <5A1828C3-CBC2-3B85-BD07-C8ED10021A41> /usr/lib/system/libsystem_pthread.dylib
+       0x186e9c000 -        0x186ea54f3  libsystem_platform.dylib (402.0.1.0.1) <080E4444-A0FB-3913-9756-4E470015F32F> /usr/lib/system/libsystem_platform.dylib
+       0x186ea6000 -        0x186ed4903  libsystem_info.dylib (603) <BC387AEB-1CEF-3513-92D7-D7F913596711> /usr/lib/system/libsystem_info.dylib
+       0x18affe000 -        0x18b007b13  libsystem_darwin.dylib (1786.0.3) <4E66C888-993C-3E6A-A8DA-A949C01C5B67> /usr/lib/system/libsystem_darwin.dylib
+       0x18b458000 -        0x18b469b8b  libsystem_notify.dylib (368) <58FD36D8-37A7-311C-80F2-8E64DD8710CF> /usr/lib/system/libsystem_notify.dylib
+       0x18d5b5000 -        0x18d5cfd93  libsystem_networkextension.dylib (2340.1.2) <22E1D190-486F-324F-ABA4-F36AB841BFE9> /usr/lib/system/libsystem_networkextension.dylib
+       0x18d65d000 -        0x18d674247  libsystem_asl.dylib (409) <B4D449B7-A821-3A9A-8019-E917B291F10A> /usr/lib/system/libsystem_asl.dylib
+       0x18e608000 -        0x18e608f2f  libobjcMsgSend.dylib (973.1) <41179EDE-DC97-3BBE-8848-6400D12C1436> /usr/lib/objc/libobjcMsgSend.dylib
+       0x18f754000 -        0x18f75bedf  libsystem_symptoms.dylib (2394.0.4) <60EE7884-9F4E-3184-A6AC-FA40A7A0297D> /usr/lib/system/libsystem_symptoms.dylib
+       0x193aec000 -        0x193b26aeb  libsystem_containermanager.dylib (833.0.8.0.1) <08A57205-555D-3792-8931-9D5B585AF326> /usr/lib/system/libsystem_containermanager.dylib
+       0x19513f000 -        0x195143317  libsystem_configuration.dylib (1446) <F3EB66A7-7A24-3AE5-B6E8-9A37BB00F119> /usr/lib/system/libsystem_configuration.dylib
+       0x195144000 -        0x19514ae03  libsystem_sandbox.dylib (3051.0.52) <1E892B56-092E-3832-BDE3-DCE356D7A4FA> /usr/lib/system/libsystem_sandbox.dylib
+       0x196608000 -        0x196608f2f  libobjcMsgSend1.dylib (973.1) <B40D9B2A-E1EE-37ED-8004-711A1F263DE1> /usr/lib/objc/libobjcMsgSend1.dylib
+       0x196d28000 -        0x196d2af93  libquarantine.dylib (217.0.4) <7FD4AE22-86EF-382B-83F5-ADF9336C1160> /usr/lib/system/libquarantine.dylib
+       0x19743a000 -        0x1974401e7  libsystem_coreservices.dylib (203) <57248E07-11A5-3857-918E-4A3A63B69FE8> /usr/lib/system/libsystem_coreservices.dylib
+       0x197a02000 -        0x197a3fb27  libsystem_m.dylib (3326.0.1) <A3FB340F-3ED5-30F4-8B64-9D5860F64D35> /usr/lib/system/libsystem_m.dylib
+       0x197a41000 -        0x197a444f7  libmacho.dylib (27062) <50DEADEC-3E99-3519-AFC3-4A3FEB3F14C3> /usr/lib/system/libmacho.dylib
+       0x197a5e000 -        0x197a6a707  libcommonCrypto.dylib (600041) <41C99F45-C5E6-39DB-B1F2-A1BEA9D242A4> /usr/lib/system/libcommonCrypto.dylib
+       0x197a6b000 -        0x197a74c87  libunwind.dylib (2200.5) <3070AB81-B082-39E8-8A00-EF88DDE9AC47> /usr/lib/system/libunwind.dylib
+       0x197a7c000 -        0x197a867eb  libcopyfile.dylib (260.0.3) <72D95AF9-BF5E-3A84-81A6-BCC5BDB99857> /usr/lib/system/libcopyfile.dylib
+       0x197a87000 -        0x197a8a8bf  libcompiler_rt.dylib (103.4) <DFB5CE7F-A36E-36AA-BECE-1392D3D43607> /usr/lib/system/libcompiler_rt.dylib
+       0x197a8b000 -        0x197a90077  libsystem_collections.dylib (1786.0.3) <1E8022D4-5A37-3A7A-8936-603E6FA88358> /usr/lib/system/libsystem_collections.dylib
+       0x197a91000 -        0x197a93f1f  libsystem_secinit.dylib (182) <DE037464-4C5D-3E96-A33F-2A4557CC6A20> /usr/lib/system/libsystem_secinit.dylib
+       0x197a94000 -        0x197a9697f  libremovefile.dylib (96) <E6E6DFCF-6B2C-3F30-A59D-816CAB1190CE> /usr/lib/system/libremovefile.dylib
+       0x197a97000 -        0x197a97e27  libkeymgr.dylib (31) <5EC997EF-3ADA-360B-9FCD-5F940C83FA4E> /usr/lib/system/libkeymgr.dylib
+       0x197a98000 -        0x197aa0af7  libsystem_dnssd.dylib (3111.0.5.0.1) <DE22096F-1E5B-3D6E-8164-771582DD6391> /usr/lib/system/libsystem_dnssd.dylib
+       0x197aa1000 -        0x197aa5f1b  libcache.dylib (95) <80BAE197-E285-3F6E-A1EE-B77FE37D7E5D> /usr/lib/system/libcache.dylib
+       0x197aa6000 -        0x197aa78f3  libSystem.B.dylib (1359) <4FDC9AA6-B344-37FE-B8C6-A4C94A038F57> /usr/lib/libSystem.B.dylib
+       0x19e608000 -        0x19e608f2f  libobjcMsgSend2.dylib (973.1) <BD27A84B-C9AE-3282-BBEA-3B6119837B5A> /usr/lib/objc/libobjcMsgSend2.dylib
+       0x1a6608000 -        0x1a6608f2f  libobjcMsgSend3.dylib (973.1) <C0860D68-DDFC-3BD7-8B06-DB0645CBBED4> /usr/lib/objc/libobjcMsgSend3.dylib
+       0x1ae608000 -        0x1ae608f2f  libobjcMsgSend4.dylib (973.1) <A6153BF5-622B-3B01-81B6-F64A365EF613> /usr/lib/objc/libobjcMsgSend4.dylib
+       0x1b6608000 -        0x1b6608f2f  libobjcMsgSend5.dylib (973.1) <3913A71C-B29A-3AEA-820B-BEC40AC1861A> /usr/lib/objc/libobjcMsgSend5.dylib
+       0x1be608000 -        0x1be608f2f  libobjcMsgSend6.dylib (973.1) <9BC523A3-E167-3F6C-8CAE-0F3EBA671791> /usr/lib/objc/libobjcMsgSend6.dylib
+       0x1c6608000 -        0x1c6608f2f  libobjcMsgSend7.dylib (973.1) <248B7BCE-5B4C-34C7-A340-43D5228628C5> /usr/lib/objc/libobjcMsgSend7.dylib
+       0x1ce608000 -        0x1ce608f2f  libobjcMsgSend8.dylib (973.1) <3E041BAD-A8E8-3069-B741-78CD1A45B176> /usr/lib/objc/libobjcMsgSend8.dylib
+       0x1d6608000 -        0x1d6608f2f  libobjcMsgSend9.dylib (973.1) <34A67969-21A0-39D6-BB81-8FDA5A2409DB> /usr/lib/objc/libobjcMsgSend9.dylib
+       0x1de608000 -        0x1de608f2f  libobjcMsgSend10.dylib (973.1) <678186C0-8EAD-3B35-8CBB-00285B41E4A0> /usr/lib/objc/libobjcMsgSend10.dylib
+       0x1e6608000 -        0x1e6608f2f  libobjcMsgSend11.dylib (973.1) <E05CB08C-E956-36FA-8967-AE8E346A8D2C> /usr/lib/objc/libobjcMsgSend11.dylib
+       0x20e608000 -        0x20e608f2f  libobjcMsgSend12.dylib (973.1) <10AB03AA-FF1F-3FDC-9DFB-BFC40042C501> /usr/lib/objc/libobjcMsgSend12.dylib
+       0x216608000 -        0x216608f2f  libobjcMsgSend13.dylib (973.1) <ABF53427-FA6F-3D0D-8F9D-7AD795CA5C92> /usr/lib/objc/libobjcMsgSend13.dylib
+       0x21e608000 -        0x21e608f2f  libobjcMsgSend14.dylib (973.1) <9A844C46-A6DA-34D4-8EBF-2AD775C30684> /usr/lib/objc/libobjcMsgSend14.dylib
+       0x226608000 -        0x226608f2f  libobjcMsgSend15.dylib (973.1) <7C995666-2B2D-3284-AA0A-EBF7C922838E> /usr/lib/objc/libobjcMsgSend15.dylib
+       0x22e608000 -        0x22e608f2f  libobjcMsgSend16.dylib (973.1) <B6C0E14B-53AE-3E22-9ED5-1729C49F46F2> /usr/lib/objc/libobjcMsgSend16.dylib
+       0x236608000 -        0x236608f2f  libobjcMsgSend17.dylib (973.1) <07B4CF85-251B-301B-832B-20B315A59E19> /usr/lib/objc/libobjcMsgSend17.dylib
+       0x23e608000 -        0x23e608f2f  libobjcMsgSend18.dylib (973.1) <43E575B7-04DB-3999-A633-1A3B638BA6E3> /usr/lib/objc/libobjcMsgSend18.dylib
+       0x246608000 -        0x246608f2f  libobjcMsgSend19.dylib (973.1) <736F4D85-76F7-3B28-8D87-C07E8F7A0EF4> /usr/lib/objc/libobjcMsgSend19.dylib
+       0x24e608000 -        0x24e608f2f  libobjcMsgSend20.dylib (973.1) <74E67C8B-6BCA-3184-A18E-A97F370052C6> /usr/lib/objc/libobjcMsgSend20.dylib
+       0x256608000 -        0x256608f2f  libobjcMsgSend21.dylib (973.1) <CC0D732F-98E7-3888-9E15-70984DA2FB04> /usr/lib/objc/libobjcMsgSend21.dylib
+       0x25e608000 -        0x25e608f2f  libobjcMsgSend22.dylib (973.1) <85A60286-5DE3-32BA-B18C-2A498B065C88> /usr/lib/objc/libobjcMsgSend22.dylib
+       0x266608000 -        0x266608f2f  libobjcMsgSend23.dylib (973.1) <5452A0D2-6B19-39BE-ADDD-80B7BCDE3A98> /usr/lib/objc/libobjcMsgSend23.dylib
+       0x26e608000 -        0x26e608f2f  libobjcMsgSend24.dylib (973.1) <94BBF2D6-722B-350D-8557-4D25A8E8D53A> /usr/lib/objc/libobjcMsgSend24.dylib
+       0x276608000 -        0x276608f2f  libobjcMsgSend25.dylib (973.1) <35481387-5A8E-3AE4-86A6-94CEB3CC8726> /usr/lib/objc/libobjcMsgSend25.dylib
+       0x28e608000 -        0x28e608f2f  libobjcMsgSend26.dylib (973.1) <9E0C8664-E7F4-39D1-AAFC-BD92B255E4E8> /usr/lib/objc/libobjcMsgSend26.dylib
+       0x296608000 -        0x296608f2f  libobjcMsgSend27.dylib (973.1) <FD424935-55A9-3650-955A-EED3441A1D19> /usr/lib/objc/libobjcMsgSend27.dylib
+       0x29e608000 -        0x29e608f2f  libobjcMsgSend28.dylib (973.1) <09BA7B97-7DF7-3C7F-932A-B6847662FC49> /usr/lib/objc/libobjcMsgSend28.dylib
+       0x2a6608000 -        0x2a6608f2f  libobjcMsgSend29.dylib (973.1) <36D5BA3F-2139-30B0-8558-556764BE9813> /usr/lib/objc/libobjcMsgSend29.dylib
+       0x2ae608000 -        0x2ae608f2f  libobjcMsgSend30.dylib (973.1) <9F05564A-9D12-372C-98FC-E9F0E6BE4F04> /usr/lib/objc/libobjcMsgSend30.dylib
+       0x2b3322000 -        0x2b3328fe5  libRosetta.dylib (385) <E359944B-D230-33F9-A04E-0C3B17C3326E> /usr/lib/libRosetta.dylib
+       0x2b3d11000 -        0x2b3d1475b  libsystem_darwindirectory.dylib (129.0.1) <61264923-2AA5-3658-B8C4-550C71E9D4B3> /usr/lib/system/libsystem_darwindirectory.dylib
+       0x2b3d15000 -        0x2b3d1fd9b  libsystem_eligibility.dylib (446.1.3) <EDDE8E9C-A2CF-3931-BBB3-321CB852EB30> /usr/lib/system/libsystem_eligibility.dylib
+       0x2b3d20000 -        0x2b3d2942b  libsystem_sanitizers.dylib (32) <7138ED99-7AA0-34EA-B35B-20EF6ADB1EED> /usr/lib/system/libsystem_sanitizers.dylib
+       0x2b3d2a000 -        0x2b3d2aa13  libsystem_trial.dylib (511) <6AE48824-EC44-3A8C-B501-BE57DBE892E7> /usr/lib/system/libsystem_trial.dylib
+       0x2b6608000 -        0x2b6608f2f  libobjcMsgSend31.dylib (973.1) <0985E20F-78C3-3466-A2B2-DBB95F7104A3> /usr/lib/objc/libobjcMsgSend31.dylib
+       0x2be608000 -        0x2be608f2f  libobjcMsgSend32.dylib (973.1) <0D309D58-D576-3E5D-AD4B-6D55AB491702> /usr/lib/objc/libobjcMsgSend32.dylib
+       0x2c6608000 -        0x2c6608f2f  libobjcMsgSend33.dylib (973.1) <346E0484-48FA-369B-8A64-93B5F5341CFE> /usr/lib/objc/libobjcMsgSend33.dylib
+       0x2ce608000 -        0x2ce608f2f  libobjcMsgSend34.dylib (973.1) <6A31F809-BCBE-3E01-A367-E91FDACCE324> /usr/lib/objc/libobjcMsgSend34.dylib
